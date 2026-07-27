@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gatehouse-contracts"
+version = "0.1.0"
+description = "Gatehouse KY-A frozen contracts: generated Pydantic models + canon/witness/verdict utilities"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.7"]
+
+[project.optional-dependencies]
+dev = ["datamodel-code-generator>=0.26", "jsonschema>=4.22", "pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["gatehouse_contracts*"]

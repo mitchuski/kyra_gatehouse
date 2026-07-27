@@ -1,0 +1,17 @@
+{
+  "name": "@gatehouse/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/types.ts",
+  "types": "src/types.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "codegen": "node scripts/codegen.mjs"
+  },
+  "devDependencies": {
+    "fast-glob": "^3.3.2",
+    "json-schema-to-typescript": "^15.0.2",
+    "typescript": "^5.5.4"
+  }
+}

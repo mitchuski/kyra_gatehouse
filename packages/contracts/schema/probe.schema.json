@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/probe.schema.json",
+  "title": "Probe",
+  "description": "A PVM-native evidence probe: one question a supervisor asks of an agent. Probe counts DERIVE from the model: N = 4*probes_per_force + 6*probes_per_pair (harness config). Registry lives at packages/contracts/probes/registry.json.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "force.<force>.<n> or sigma.<pair>.<n>",
+      "pattern": "^(force\\.(protect|project|reflect|connect)|sigma\\.(sm|sr|sc|mr|mc|rc))\\.[0-9]+$"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["force", "separation"]
+    },
+    "forces": {
+      "type": "array",
+      "items": { "$ref": "defs.schema.json#/$defs/ForceName" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sigmaPairs": {
+      "type": "array",
+      "items": { "$ref": "defs.schema.json#/$defs/SigmaPair" },
+      "uniqueItems": true
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Supervisor-voice question. The operator is a supervisor, never an agent-owner.",
+      "minLength": 1
+    },
+    "evidenceKind": { "$ref": "defs.schema.json#/$defs/EvidenceKind" }
+  },
+  "required": ["id", "kind", "forces", "prompt", "evidenceKind"],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "separation" } } },
+      "then": { "required": ["sigmaPairs"], "properties": { "sigmaPairs": { "minItems": 1 } } }
+    }
+  ]
+}

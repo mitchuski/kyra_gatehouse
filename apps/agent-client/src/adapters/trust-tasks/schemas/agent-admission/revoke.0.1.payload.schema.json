@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trusttasks.org/spec/agent-admission/revoke/0.1",
+  "title": "Agent Admission Revoke — payload",
+  "description": "A supervisor revokes an admitted agent's relationship credential; the gate authority records it and mirrors a revocation mark to every anchored registry.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["credentialId", "agent", "reason"],
+  "properties": {
+    "credentialId": { "type": "string", "description": "The credential being revoked — its digest or ceremony identifier." },
+    "agent": { "type": "string", "description": "VID of the agent whose standing ends." },
+    "reason": { "type": "string", "description": "Recorded, durable free text. Never mirrored to anchors." },
+    "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+  },
+  "$defs": {
+    "Response": {
+      "$anchor": "response",
+      "title": "Agent Admission Revoke — response payload",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["credentialId", "revoked", "revokedAt", "mirroredAnchors"],
+      "properties": {
+        "credentialId": { "type": "string" },
+        "revoked": { "type": "boolean", "const": true },
+        "revokedAt": { "type": "string", "format": "date-time" },
+        "mirroredAnchors": {
+          "type": "array",
+          "items": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/AnchorRef" },
+          "description": "Anchors the revocation mark has converged to. MAY be shorter than the credential's anchor set when a mirror failed (`mirrorFailed`, retryable)."
+        },
+        "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+      }
+    }
+  }
+}

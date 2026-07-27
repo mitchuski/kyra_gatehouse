@@ -1,0 +1,27 @@
+# deps
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# builds
+dist/
+build/
+*.tsbuildinfo
+.vite/
+
+# codegen scratch (generated outputs ARE committed; temp diffs are not)
+.codegen-tmp/
+
+# env & secrets — never in repo (cyber-risk guardrail)
+.env
+.env.*
+*.pem
+*.key
+
+# editor/os
+.DS_Store
+Thumbs.db
+interop/out/

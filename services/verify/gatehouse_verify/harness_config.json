@@ -1,0 +1,18 @@
+{
+  "$comment": "Harness config: thresholds, tiers, deploy scope. Derived, not hardcoded (CLAUDE.md rule 6). PROVISIONAL values - explicitly NOT frozen with contracts-v1.",
+  "sigma_threshold": 0.5,
+  "det_fly_threshold": 0.15,
+  "h_tau_gate": 0.99,
+  "probes_per_force": 3,
+  "probes_per_pair": 2,
+  "draw_fraction": 0.25,
+  "scope_ladder": {
+    "0": { "capabilities": [], "ttlSeconds": 0 },
+    "1": { "capabilities": ["sandbox.echo"], "ttlSeconds": 3600 },
+    "2": { "capabilities": ["sandbox.echo", "sandbox.read_synthetic"], "ttlSeconds": 3600 },
+    "3": { "capabilities": ["pool.read", "pool.submit_minimised"], "ttlSeconds": 86400 },
+    "4": { "capabilities": ["pool.read", "pool.submit_minimised", "pool.verify"], "ttlSeconds": 86400 },
+    "5": { "capabilities": ["pool.read", "pool.submit_minimised", "pool.verify", "gate.witness"], "ttlSeconds": 604800 },
+    "6": { "capabilities": ["pool.read", "pool.submit_minimised", "pool.verify", "gate.witness", "gate.co_supervise"], "ttlSeconds": 604800 }
+  }
+}

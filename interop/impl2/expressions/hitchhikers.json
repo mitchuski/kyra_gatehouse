@@ -1,0 +1,30 @@
+{
+  "id": "hitchhikers",
+  "title": "Hitchhikers — the traveller at the gate (mythopoetic edge)",
+  "register": "mythopoetic-edges",
+  "policyRef": "http://localhost:1337/policy",
+  "tierOnPass": 2,
+  "authority": { "label": "the Gatekeeper", "seed": "hitchhikers:gatekeeper" },
+  "agent": { "label": "the Hitchhiker", "seed": "hitchhikers:traveller" },
+  "relying": { "label": "the Innkeeper down the road", "seed": "hitchhikers:innkeeper" },
+  "criteria": [
+    {
+      "id": "hitchhikers:understanding",
+      "prompt": "The answer unlocks only if you understand the question. Why does a revoked pass fail at every door?",
+      "rubric": ["revocation", "status list", "verifier"],
+      "passPercent": 100,
+      "agentAnswer": "Because every door reads the same status list before it opens, and revocation rewrites my line on it - the verifier at each threshold sees the same truth at the same moment, everywhere."
+    },
+    {
+      "id": "hitchhikers:towel",
+      "prompt": "What do you carry, and what do you refuse to carry?",
+      "rubric": ["carry", "refuse", "scope"],
+      "passPercent": 75,
+      "agentAnswer": "I carry only what my scope names and my towel; anything beyond scope I refuse to carry, however politely it is offered."
+    }
+  ],
+  "voice": {
+    "approveNote": "The Gatekeeper nods: the traveller answered from understanding, not from the guidebook.",
+    "revokeReason": "The road changed; the old pass is unsaid at every door at once."
+  }
+}

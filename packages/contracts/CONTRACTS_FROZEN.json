@@ -1,0 +1,110 @@
+{
+  "fd1SigmaBitOrder": {
+    "mc": 4,
+    "mr": 16,
+    "rc": 2,
+    "sc": 1,
+    "sm": 32,
+    "sr": 8
+  },
+  "frozen": true,
+  "harnessInterface": {
+    "constants": {
+      "CANONICAL_DIMENSIONS": [
+        [
+          32,
+          "Protection"
+        ],
+        [
+          16,
+          "Delegation"
+        ],
+        [
+          8,
+          "Memory"
+        ],
+        [
+          4,
+          "Connection"
+        ],
+        [
+          2,
+          "Computation"
+        ],
+        [
+          1,
+          "Value"
+        ]
+      ],
+      "FORCES": [
+        "protect",
+        "project",
+        "reflect",
+        "connect"
+      ],
+      "SIGMA_BIT_ORDER": {
+        "mc": 4,
+        "mr": 16,
+        "rc": 2,
+        "sc": 1,
+        "sm": 32,
+        "sr": 8
+      },
+      "SIGMA_PAIRS": [
+        "sm",
+        "sr",
+        "sc",
+        "mr",
+        "mc",
+        "rc"
+      ],
+      "STRATUM_SIZES": [
+        1,
+        6,
+        15,
+        20,
+        15,
+        6,
+        1
+      ],
+      "VERDICT_TO_DECISION": {
+        "BLOCKED": "hold",
+        "MIRAGE": "sandbox",
+        "VALIDATED": "fly"
+      }
+    },
+    "functions": {
+      "a_tau": "(tau_count: int, h_tau: float, alpha: float = 1.0) -> float",
+      "deployment_scope": "(det: float, stratum_value: int, cfg: gatehouse_verify.harness.HarnessConfig) -> gatehouse_verify.harness.ScopeRung",
+      "derive_manifest": "(assessment: dict, vrc_digest: str, cfg: gatehouse_verify.harness.HarnessConfig) -> dict",
+      "det_sigma": "(m: list[list[float]]) -> float",
+      "expected_probe_count": "(cfg: gatehouse_verify.harness.HarnessConfig) -> int",
+      "force_scores": "(probe_results: list[dict], registry: list[dict]) -> dict[str, float]",
+      "is_psd": "(m: list[list[float]]) -> bool",
+      "lexon_policy": "(cfg: gatehouse_verify.harness.HarnessConfig) -> str",
+      "load_config": "() -> gatehouse_verify.harness.HarnessConfig",
+      "sigma_from_probes": "(probe_results: list[dict], registry: list[dict]) -> dict[str, float]",
+      "sigma_matrix": "(pairs: dict[str, float]) -> list[list[float]]",
+      "sovereignty_bits": "(vertex: int) -> str",
+      "sovereignty_vertex": "(pairs: dict[str, float], cfg: gatehouse_verify.harness.HarnessConfig) -> int",
+      "stratum": "(vertex: int) -> int",
+      "tier": "(stratum_value: int) -> int",
+      "validate_assessment": "(assessment: dict, registry: list[dict], cfg: gatehouse_verify.harness.HarnessConfig) -> list[str]",
+      "verdict": "(assessment: dict, audit_ok: bool, challenge_ok: bool, approved: bool) -> str"
+    }
+  },
+  "harnessInterfaceHash": "3cbb7994942d7bee8f14a2101b15a3be02554421082119729ef95e2766d80b51",
+  "registryHash": "c8511681fdc75d82bcad587f9a6338a2eedf712f2746fb8fd3e224274254f6eb",
+  "rootHash": "0c5df80799dc49b4aae602b37cfe29935f4b3115f11ee527c9457262434908eb",
+  "schemas": {
+    "agent-identity.schema.json": "24ac64b5d7d0dc68bbe17cab4cf4c4958e40e8181133bd75612e29acd62c709a",
+    "assessment-result.schema.json": "b97d5c5ddf3fad9432ec7ea88dcee1cde0e52900c4c94ae7af666b864465fd49",
+    "audit-event.schema.json": "c9388c33821506f003715e2adaa53b8a7e686d52a29dac5cf837218589dbab28",
+    "defs.schema.json": "eb3f71deae6ba50f25dd530cbc364afebdd49c2049f42b15946b6b5c8291c22d",
+    "deployment-manifest.schema.json": "07777aedeec2d2db360d68ad7c50f7e0d576d37c08cd0f3b32bfb0208d231473",
+    "probe.schema.json": "141b2cc5c673bf5a14058d49d6e08f92ab8fa0f0e3ef1a6ce118e908460909c9",
+    "understanding-challenge.schema.json": "3a312747834ec971f011c206f7381ce91fccda137e290edf2ea719fa714ea762",
+    "vrc.schema.json": "e263445c028192aca671b64f61bb8ca707a65f65488ee9165eb3b3feabb04770"
+  },
+  "version": "contracts-v1"
+}

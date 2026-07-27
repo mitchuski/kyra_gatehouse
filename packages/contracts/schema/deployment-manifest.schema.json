@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/deployment-manifest.schema.json",
+  "title": "DeploymentManifest",
+  "description": "The dragon-flight record: deployment self-activates only when the predicate holds. Scope is a FUNCTION of variance: high det(Sigma) grants broad scope, low grants sandbox, det <= 0 holds entirely (multiplicative gating). decision == VERDICT_TO_DECISION[verdict] (VALIDATED->fly, MIRAGE->sandbox, BLOCKED->hold) - enforced in code + WP7.",
+  "type": "object",
+  "properties": {
+    "manifestId": { "type": "string", "minLength": 1 },
+    "agent": { "$ref": "defs.schema.json#/$defs/Did" },
+    "assessmentDigest": { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+    "vrcDigest": { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+    "detSigma": { "type": "number" },
+    "stratum": { "$ref": "defs.schema.json#/$defs/Stratum" },
+    "predicate": {
+      "type": "object",
+      "description": "The flight predicate record: Phi > 0 across axes AND h(tau) -> 1 AND V > threshold, plus the two issuance gates.",
+      "properties": {
+        "detSigmaPositive": { "type": "boolean" },
+        "hTau": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "challengePassed": { "type": "boolean" },
+        "supervisorApproved": { "type": "boolean" }
+      },
+      "required": ["detSigmaPositive", "hTau", "challengePassed", "supervisorApproved"],
+      "additionalProperties": false
+    },
+    "verdict": { "$ref": "defs.schema.json#/$defs/Verdict" },
+    "decision": { "$ref": "defs.schema.json#/$defs/DeployDecision" },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "constraints": {
+          "type": "object",
+          "description": "Free-form constraint map (rate limits, data classes, jurisdictions)."
+        },
+        "ttlSeconds": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["capabilities", "constraints", "ttlSeconds"],
+      "additionalProperties": false
+    },
+    "issuedAt": { "$ref": "defs.schema.json#/$defs/Timestamp" },
+    "revocationRef": { "type": "string" }
+  },
+  "required": ["manifestId", "agent", "assessmentDigest", "vrcDigest", "detSigma", "stratum", "predicate", "verdict", "decision", "scope", "issuedAt"],
+  "additionalProperties": false
+}

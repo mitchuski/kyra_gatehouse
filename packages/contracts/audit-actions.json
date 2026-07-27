@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "$comment": "Known audit actions. DATA, not frozen contract: new state transitions add rows here without re-freezing schemas. The schema constrains only the ^[a-z]+\\.[a-z_]+$ pattern.",
+  "actions": [
+    "gate.approach",
+    "gate.queue_entered",
+    "assessment.started",
+    "assessment.probe_scored",
+    "assessment.witness_drawn",
+    "assessment.completed",
+    "challenge.issued",
+    "challenge.attempted",
+    "challenge.passed",
+    "challenge.failed",
+    "approval.granted",
+    "approval.denied",
+    "gate.identity_refused",
+    "vrc.issued",
+    "vrc.verified",
+    "vrc.refused",
+    "vrc.revoked",
+    "manifest.issued",
+    "manifest.held",
+    "registry.anchored",
+    "registry.revocation_mirrored",
+    "pool.bundle_assembled",
+    "pool.bundle_verified",
+    "pool.bundle_refused"
+  ]
+}

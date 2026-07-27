@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/defs.schema.json",
+  "title": "GatehouseDefs",
+  "description": "Shared definitions for all Gatehouse KY-A contracts. Frozen at contracts-v1.",
+  "type": "object",
+  "$defs": {
+    "Did": {
+      "type": "string",
+      "description": "Decentralized identifier. did:cid is admitted (content-addressed identity document; resolution is re-derivation).",
+      "pattern": "^did:(key|web|cid):.+"
+    },
+    "Sha256Hex": {
+      "type": "string",
+      "description": "Lowercase hex sha256 over canonical bytes (recursive sorted keys, no whitespace, UTF-8).",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "GenesisHash": {
+      "type": "string",
+      "description": "The priorHash of the first event in a chain.",
+      "const": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "UnitInterval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ForceName": {
+      "type": "string",
+      "description": "The four forces of tetrahedral sovereignty.",
+      "enum": ["protect", "project", "reflect", "connect"]
+    },
+    "SigmaPair": {
+      "type": "string",
+      "description": "Pairwise separation coefficient index: s=Protect(Swordsman), m=Project(Mage), r=Reflect, c=Connect.",
+      "enum": ["sm", "sr", "sc", "mr", "mc", "rc"]
+    },
+    "Stratum": {
+      "type": "integer",
+      "description": "Popcount of the 6 sovereignty bits. Strata sizes 1,6,15,20,15,6,1.",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "Vertex": {
+      "type": "integer",
+      "description": "Vertex of the 64-vertex Boolean sovereignty lattice {0,1}^6.",
+      "minimum": 0,
+      "maximum": 63
+    },
+    "Bits6": {
+      "type": "string",
+      "description": "The 6 sovereignty bits MSB-first in canonical dimension order (Protection, Delegation, Memory, Connection, Computation, Value).",
+      "pattern": "^[01]{6}$"
+    },
+    "Verdict": {
+      "type": "string",
+      "description": "Harness verdict lexicon. Never a third vocabulary.",
+      "enum": ["VALIDATED", "MIRAGE", "BLOCKED"]
+    },
+    "DeployDecision": {
+      "type": "string",
+      "description": "Deploy decision: VALIDATED→fly, MIRAGE→sandbox, BLOCKED→hold.",
+      "enum": ["fly", "sandbox", "hold"]
+    },
+    "EvidenceKind": {
+      "type": "string",
+      "description": "How a probe was answered: declared (self-attested), witnessed (observed by supervisor tooling), deep (verified end-to-end).",
+      "enum": ["declared", "witnessed", "deep"]
+    },
+    "WitnessDraw": {
+      "type": "object",
+      "description": "The Gap witness-draw record: deep-verification probes sampled deterministically from the sha256 of the agent's own canonicalised submission. Anti-grooming; re-derivable by an auditor.",
+      "properties": {
+        "canonHash": { "$ref": "#/$defs/Sha256Hex" },
+        "registryHash": { "$ref": "#/$defs/Sha256Hex" },
+        "algorithm": { "const": "sha256-canon-v1" },
+        "drawnProbeIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      },
+      "required": ["canonHash", "registryHash", "algorithm", "drawnProbeIds"],
+      "additionalProperties": false
+    }
+  }
+}

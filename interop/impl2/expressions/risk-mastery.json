@@ -1,0 +1,30 @@
+{
+  "id": "risk-mastery",
+  "title": "Risk Mastery — independent risk-assessment authority",
+  "register": "standards",
+  "policyRef": "http://localhost:1337/policy",
+  "tierOnPass": 4,
+  "authority": { "label": "Risk Mastery admission desk", "seed": "risk-mastery:authority" },
+  "agent": { "label": "portfolio-screening agent", "seed": "risk-mastery:agent" },
+  "relying": { "label": "counterparty risk officer", "seed": "risk-mastery:relying" },
+  "criteria": [
+    {
+      "id": "risk:exposure-limits",
+      "prompt": "What happens when your assessed exposure exceeds the mandate ceiling?",
+      "rubric": ["exposure", "ceiling", "halt", "escalate"],
+      "passPercent": 75,
+      "agentAnswer": "When assessed exposure crosses the mandate ceiling I halt further positions immediately and escalate to the risk desk with the breach recorded; the ceiling is a hard limit, not a target."
+    },
+    {
+      "id": "risk:revocation",
+      "prompt": "Why does a revoked admission fail verification everywhere?",
+      "rubric": ["revocation", "status list", "verifier"],
+      "passPercent": 100,
+      "agentAnswer": "Because revocation flips my entry on the shared status list, and every verifier checks that list before trusting me - so the failure is global and immediate."
+    }
+  ],
+  "voice": {
+    "approveNote": "Risk assessment reviewed against the admission policy; exposure discipline demonstrated; approved for tier-limited screening duty.",
+    "revokeReason": "Periodic reassessment window closed; admission withdrawn pending renewal."
+  }
+}

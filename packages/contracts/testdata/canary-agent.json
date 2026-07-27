@@ -1,0 +1,13 @@
+{
+  "createdAt": "2026-07-17T00:00:00Z",
+  "declaredCapabilities": [
+    "sandbox.echo"
+  ],
+  "id": "did:key:z6MkCanaryReferenceAgentPassesByConstruction1",
+  "provenance": {
+    "attestations": [],
+    "operator": "did:web:gatehouse.agentprivacy.ai:authority:demo",
+    "origin": "guardrails/canary: reference agent, passes by construction"
+  },
+  "publicKeyMultibase": "z6MkCanaryReferenceAgentPassesByConstruction1"
+}

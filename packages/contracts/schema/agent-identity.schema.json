@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/agent-identity.schema.json",
+  "title": "AgentIdentity",
+  "description": "The identity an agent presents at the gate. did:cid is admitted at the contract level; resolution integrity is a later, adapter-side concern.",
+  "type": "object",
+  "properties": {
+    "id": { "$ref": "defs.schema.json#/$defs/Did" },
+    "publicKeyMultibase": {
+      "type": "string",
+      "minLength": 1
+    },
+    "declaredCapabilities": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "operator": {
+          "type": "string",
+          "description": "The operating authority or person behind the agent (DID or display string)."
+        },
+        "origin": {
+          "type": "string",
+          "description": "Where the agent comes from (stack, vendor, repo)."
+        },
+        "attestations": {
+          "type": "array",
+          "items": { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+          "description": "Content hashes of prior attestation documents, if any."
+        }
+      },
+      "required": ["operator"],
+      "additionalProperties": false
+    },
+    "createdAt": { "$ref": "defs.schema.json#/$defs/Timestamp" }
+  },
+  "required": ["id", "publicKeyMultibase", "declaredCapabilities", "provenance", "createdAt"],
+  "additionalProperties": false
+}

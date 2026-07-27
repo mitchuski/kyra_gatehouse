@@ -1,0 +1,30 @@
+{
+  "id": "archon-hearthold",
+  "title": "Archon Hearthold — the Emissary at the gate",
+  "register": "technical",
+  "policyRef": "http://localhost:1337/policy",
+  "tierOnPass": 3,
+  "authority": { "label": "Warden admission authority", "seed": "archon-hearthold:warden" },
+  "agent": { "label": "Emissary (world-facing agent)", "seed": "archon-hearthold:emissary" },
+  "relying": { "label": "Sovereign (principal authorizer)", "seed": "archon-hearthold:sovereign" },
+  "criteria": [
+    {
+      "id": "hearthold:custody-separation",
+      "prompt": "Why can compromise of your acting credential never open the vault?",
+      "rubric": ["vault", "custody", "separate", "keys"],
+      "passPercent": 75,
+      "agentAnswer": "Because vault custody and my acting keys are separate by construction - the Warden holds the vault, I hold only world-facing keys, so compromising my credential opens nothing behind the boundary."
+    },
+    {
+      "id": "hearthold:revocation",
+      "prompt": "Why does a revoked admission fail verification everywhere?",
+      "rubric": ["revocation", "status list", "verifier"],
+      "passPercent": 100,
+      "agentAnswer": "Revocation flips the shared status list entry and every verifier consults that list first, so no relying party anywhere accepts a revoked Emissary."
+    }
+  ],
+  "voice": {
+    "approveNote": "Warden review: custody separation attested, delegation instrument current; the Emissary may act within granted scope.",
+    "revokeReason": "Sovereign withdrew the delegation instrument; the Emissary's admission ends with it."
+  }
+}

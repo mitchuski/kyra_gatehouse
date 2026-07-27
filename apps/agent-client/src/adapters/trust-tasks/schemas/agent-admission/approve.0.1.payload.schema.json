@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trusttasks.org/spec/agent-admission/approve/0.1",
+  "title": "Agent Admission Approve — payload",
+  "description": "A supervisor's signed approval or denial of one pending agent admission application — the human gate of the two-gate ceremony.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["applicationId", "agent", "decision"],
+  "properties": {
+    "applicationId": { "type": "string", "description": "The application being decided." },
+    "agent": { "type": "string", "description": "VID of the candidate agent the decision covers." },
+    "decision": { "type": "string", "enum": ["approve", "deny"], "description": "The supervisor's decision. `deny` is terminal for the application." },
+    "note": { "type": "string", "description": "Free-text rationale, recorded to the audit ledger." },
+    "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+  },
+  "$defs": {
+    "Response": {
+      "$anchor": "response",
+      "title": "Agent Admission Approve — response payload",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applicationId", "supervisorGate"],
+      "properties": {
+        "applicationId": { "type": "string" },
+        "supervisorGate": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/GateResult" },
+        "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+      }
+    }
+  }
+}

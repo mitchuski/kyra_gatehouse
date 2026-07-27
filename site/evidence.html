@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kyra Gate — Evidence — Gatehouse KY-A</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="masthead">
+    <h1>KYRA GATE</h1>
+    <p>Gatehouse KY-A · Know Your Agent — regulator-operated verification for AI agents</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="mathematics.html">The mathematics</a>
+      <a href="demo.html">Live demo</a>
+      <a class="here" href="evidence.html">Evidence</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <h2>Evidence</h2>
+  <p class="lede">Tiered claims. <span class="badge proven">PROVEN</span> = enforced by a
+  passing check you can run; <span class="badge derived">DERIVED</span> = follows from the
+  model, recomputed independently; <span class="badge open">OPEN</span> = stated honestly,
+  not yet demonstrated. Every row resolves to a source file. One command re-runs everything:
+  <code>pnpm verify</code>.</p>
+
+  <table>
+    <tr><th>Claim</th><th>Tier</th><th>Source / check</th></tr>
+    <tr><td>The contracts are frozen: 8 schemas + probe registry + engine interface hash to merkle root <code>0c5df807…4908eb</code>; any drift fails the suite</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>packages/contracts/CONTRACTS_FROZEN.json</code> · <code>test_freeze.py</code> · runtime 01 (independent recompute)</td></tr>
+    <tr><td>No credential without both gates: missing approval or failed challenge refuses issuance, on the record</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>guardrails/test_guardrails_gates.py</code> · VRC schema (evidence must carry both gate types)</td></tr>
+    <tr><td>The credential is bilateral — exactly two proofs, two parties; single-signature and self-signed forms are rejected</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>vrc.schema.json</code> (minItems=maxItems=2) · runtime 05</td></tr>
+    <tr><td>Collapsed sovereignty blocks: det(Σ) ≤ 0 or non-PSD ⇒ BLOCKED ⇒ no deployment, even with both gates passed</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>harness.verdict</code> · <code>test_guardrails_gates.py</code> · runtime 05</td></tr>
+    <tr><td>The audit chain is tamper-evident: one flipped byte is detected — including client-side in the supervisor's browser</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>canon.py</code> · vitest parity lane · runtime 03 · <code>packages/audit</code></td></tr>
+    <tr><td>The witness draw is auditor-re-derivable and grooming-resistant: the golden draw reproduces byte-for-byte in a second language; a hand-picked draw is refused</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>witness.py</code> · runtime 04</td></tr>
+    <tr><td>Revocation fails verification everywhere, immediately, and is itself an audit event</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>issuance.py</code> · <code>test_guardrails_gates.py</code></td></tr>
+    <tr><td>A spoofed identity is refused before assessment</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>issuance.verify_identity</code> · gates test · Lexon "Spoof Refusal" clause</td></tr>
+    <tr><td>The reference canary passes every gate by construction (if it ever fails, the gate is broken, not the candidate)</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>guardrails/test_canary.py</code> · regenerable golden vectors</td></tr>
+    <tr><td>The policy a regulator reads and the numbers that gate deployment are the same source (Lexon correspondence)</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>guardrails/lexon/gatehouse.lexon</code> · <code>test_lexon_policy.py</code> · runtime 06</td></tr>
+    <tr><td>Probe count derives from the model: N = 4·probes_per_force + 6·probes_per_pair (24 at current config), full force/pair coverage</td>
+        <td><span class="badge derived">DERIVED</span></td>
+        <td><code>harness.expected_probe_count</code> · runtime 07</td></tr>
+    <tr><td>Tier IS the lattice stratum; the 7 strata (1·6·15·20·15·6·1) follow from enumerating {0,1}⁶</td>
+        <td><span class="badge derived">DERIVED</span></td>
+        <td><code>harness.stratum/tier</code> · runtime 02 (first-principles enumeration)</td></tr>
+    <tr><td>Σ = identity at full separation (det = 1); all-ones at none (det = 0); scope follows the volume through the ladder</td>
+        <td><span class="badge derived">DERIVED</span></td>
+        <td><code>harness.sigma_matrix/det_sigma/deployment_scope</code> · canary det recompute</td></tr>
+    <tr><td>Two-authority pooling: bundles are minimised BY CONSTRUCTION (a smuggled raw field is refused), verified offline plus one public status lookup, and revocation propagates — the receiving authority's next verification refuses the stale bundle</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>gatehouse_verify/pooling.py</code> · <code>guardrails/test_pooling_and_signatures.py</code></td></tr>
+    <tr><td>Both VRC proofs are REAL ed25519 signatures over the credential's canonical bytes; a tampered credential or an imposter key fails verification</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>gatehouse_verify/keys.py</code> (did:key, no resolver needed) · signature guardrails</td></tr>
+    <tr><td>TWO interoperable implementations of the agent-admission Trust Task family: an independent Python implementation (no shared code, own admission policy) verifies the gate's transcripts and the gate's validator accepts its transcripts — under three expressions — on every verify run</td>
+        <td><span class="badge proven">PROVEN</span></td>
+        <td><code>interop/impl2/impl2.py</code> · <code>interop/run.mjs</code> (both directions)</td></tr>
+    <tr><td>The reconstruction ceiling R &lt; 1 as a FORMAL claim (the minimisation invariant is enforced and an illustrative disclosure ratio ≈ 0.10 is reported; the formal statement remains open)</td>
+        <td><span class="badge open">OPEN</span></td>
+        <td><code>pooling.disclosure_ratio</code> · formal proof pending</td></tr>
+    <tr><td>Agent-side key custody (demo keys are custodial in the service; production custody = the identity adapter lane)</td>
+        <td><span class="badge open">OPEN</span></td>
+        <td><code>apps/agent-client/ADAPTERS.md</code></td></tr>
+    <tr><td>Deep-evidence coverage of the Delegation separation (σ_mr) — signed finding, disposition at contract review</td>
+        <td><span class="badge open">OPEN</span></td>
+        <td>runtime 07, finding <code>deep-coverage-gap: sigma.mr</code></td></tr>
+    <tr><td>The ceremony speaks ToIP Trust Tasks: the admission flow is emitted as a six-type envelope family (apply → respond → approve → issue + counter-sign → revoke → status), schemas vendored byte-identical with provenance digests, envelopes signed and validated on the wire in the e2e run</td>
+        <td><span class="badge derived">DERIVED</span></td>
+        <td><code>apps/agent-client/src/adapters/trust-tasks/envelope.mjs</code> · <code>apps/agent-client/src/adapters/trust-tasks/schemas/SCHEMAS_PROVENANCE.md</code> · <code>runtimes/10-trust-task-canon/test.mjs</code> · <code>scripts/e2e.mjs</code></td></tr>
+  </table>
+
+  <p class="note">Verification lanes: 64 pytest checks (guardrails) · 8 vitest checks
+  (independent JSON-Schema + byte-parity hashing) · 128 zero-dependency runtime checks that
+  re-derive the frozen artifacts — and the site itself — from bytes. The one-pager download lands with the full
+  evidence build.</p>
+</main>
+<footer>Gatehouse KY-A · one engine, many expressions · every submission is the operator's act alone</footer>
+</body>
+</html>

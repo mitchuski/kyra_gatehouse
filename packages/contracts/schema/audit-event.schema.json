@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/audit-event.schema.json",
+  "title": "AuditEvent",
+  "description": "Content-addressed, hash-chained audit event. eventId == contentHash == sha256(canonical bytes of the event without contentHash). Chain rule: event[n].priorHash == event[n-1].contentHash; first event uses the genesis hash. Every state transition emits one; rationale is REQUIRED on every decision.",
+  "$comment": "Same-bytes-same-hash discipline follows the UOR content-addressing lineage (reference: UOR-Framework/foundation/src/kernel/address.rs, Rust). Cited, not a dependency.",
+  "type": "object",
+  "properties": {
+    "contentHash": { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+    "actor": { "$ref": "defs.schema.json#/$defs/Did" },
+    "action": {
+      "type": "string",
+      "description": "Namespaced action, e.g. gate.approach, assessment.completed, challenge.attempted, vrc.issued, vrc.revoked. Known actions live in audit-actions.json (data, not frozen) so new transitions never force a schema re-freeze.",
+      "pattern": "^[a-z]+\\.[a-z_]+$"
+    },
+    "subject": { "$ref": "defs.schema.json#/$defs/Did" },
+    "payloadDigest": {
+      "$ref": "defs.schema.json#/$defs/Sha256Hex",
+      "description": "sha256 of the canonicalised payload the event refers to (assessment, challenge attempt, credential, ...)."
+    },
+    "priorHash": {
+      "anyOf": [
+        { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+        { "$ref": "defs.schema.json#/$defs/GenesisHash" }
+      ]
+    },
+    "timestamp": { "$ref": "defs.schema.json#/$defs/Timestamp" },
+    "rationale": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Why this transition happened. Required on every decision (auditability guardrail)."
+    }
+  },
+  "required": ["contentHash", "actor", "action", "payloadDigest", "priorHash", "timestamp", "rationale"],
+  "additionalProperties": false
+}

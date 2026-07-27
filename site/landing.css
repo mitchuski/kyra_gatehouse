@@ -1,0 +1,95 @@
+/* Landing — fallen in with the agentprivacy identity: the Soulbis color
+   architecture (navy ground, coral = the Swordsman, cyan = the Mage,
+   warm white), Mage-first. Verdict colours (fly/sandbox/hold) stay their
+   semantic selves and appear ONLY where a verdict is being shown. */
+:root {
+  --navy: #080c20; --navy-mid: #0d1230; --navy-light: #141a3d;
+  --coral: #e8523a; --coral-dim: rgba(232, 82, 58, 0.15);
+  --cyan: #4dd9e8; --cyan-dim: rgba(77, 217, 232, 0.12);
+  --white: #f0eee8; --white-dim: rgba(240, 238, 232, 0.55);
+  --border: rgba(240, 238, 232, 0.08); --border-hover: rgba(240, 238, 232, 0.18);
+  --fly: #3fb950; --sandbox: #d29922; --hold: #f85149;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.65 "Segoe UI", system-ui, sans-serif; color: var(--white); background: var(--navy);
+  background-image: radial-gradient(ellipse at 50% -20%, var(--navy-light) 0%, var(--navy) 62%); }
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+nav.top { display: flex; gap: 20px; padding: 20px 0; font-size: 13px; align-items: center; }
+nav.top .brand { color: var(--white); letter-spacing: 3px; font-weight: 700; margin-right: auto; }
+nav.top .brand em { font-style: normal; color: var(--white-dim); font-weight: 400; letter-spacing: 1px; font-size: 11px; display: block; }
+nav.top a { color: var(--white-dim); }
+nav.top a:hover { color: var(--white); text-decoration: none; }
+
+.hero { padding: 58px 0 40px; text-align: center; }
+.hero .kicker { font-size: 12px; letter-spacing: 3px; color: var(--cyan); margin: 0 0 14px; font-weight: 600; }
+.hero h1 { font-size: 44px; line-height: 1.14; margin: 0 0 16px; letter-spacing: -0.5px; font-weight: 650; }
+.hero h1 em { font-style: normal; color: var(--cyan); }
+.hero .sub { font-size: 18px; color: var(--white-dim); max-width: 620px; margin: 0 auto 14px; }
+.duality { font-size: 15px; color: var(--white); max-width: 640px; margin: 0 auto 28px; }
+.duality .sword { color: var(--coral); font-weight: 600; }
+.duality .mage { color: var(--cyan); font-weight: 600; }
+.ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+.cta { padding: 12px 22px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid var(--border); transition: transform 120ms, border-color 120ms; }
+.cta:hover { transform: translateY(-2px); text-decoration: none; }
+.cta.primary { background: var(--cyan); color: var(--navy); border-color: var(--cyan); }
+.cta.secondary { color: var(--white); }
+.cta.secondary:hover { border-color: var(--border-hover); }
+.status { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; font-size: 12px; }
+.chip { border: 1px solid var(--border); border-radius: 14px; padding: 3px 12px; color: var(--white-dim); font-family: Consolas, monospace; background: var(--navy-mid); }
+.chip.live { border-color: var(--cyan); color: var(--cyan); }
+.chip.live::before { content: "● "; animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.tetra-strip { display: flex; gap: 40px; justify-content: center; align-items: flex-end; padding: 32px 0 10px; }
+.tetra-strip figure { margin: 0; text-align: center; }
+.tetra-strip figcaption { font-size: 12px; color: var(--white-dim); margin-top: 6px; }
+.tetra-strip .v { font-family: Consolas, monospace; font-weight: 700; }
+.fly { color: var(--fly); } .sandbox { color: var(--sandbox); } .hold { color: var(--hold); }
+
+section.band { padding: 46px 0; border-top: 1px solid var(--border); }
+section.band h2 { font-size: 24px; margin: 0 0 8px; font-weight: 650; }
+section.band .lede { color: var(--white-dim); margin: 0 0 24px; max-width: 700px; }
+
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.agent-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+.agent-card.fly-card { border-color: rgba(77, 217, 232, 0.35); background: linear-gradient(170deg, var(--cyan-dim), var(--navy-mid) 45%); }
+.agent-card.sandbox-card { border-color: rgba(232, 82, 58, 0.3); background: linear-gradient(170deg, var(--coral-dim), var(--navy-mid) 45%); }
+.agent-card h3 { margin: 0 0 4px; font-size: 17px; letter-spacing: 1px; }
+.agent-card .tag { font-size: 12px; color: var(--white-dim); display: block; margin-bottom: 12px; }
+.agent-card p { font-size: 14px; color: var(--white); margin: 0 0 12px; }
+.agent-card .outcome { font-family: Consolas, monospace; font-size: 13px; font-weight: 700; }
+
+.acts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.act { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.act h3 { margin: 0 0 10px; font-size: 15px; display: flex; gap: 10px; align-items: center; }
+.act ol { margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--white-dim); }
+.act ol li { margin: 5px 0; }
+.act ol li b { color: var(--white); font-weight: 600; }
+.badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 2px 9px; border-radius: 10px; }
+.badge.live { background: var(--cyan); color: var(--navy); }
+
+.rail { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 26px; }
+.rail span { border: 1px solid var(--border); border-radius: 16px; padding: 5px 14px; font-size: 13px; background: var(--navy-mid); }
+.rail span em { color: var(--white-dim); font-style: normal; font-size: 11px; }
+
+.proof { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.proof .stat { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; text-align: center; }
+.proof .stat b { display: block; font-size: 26px; font-family: Consolas, monospace; color: var(--cyan); }
+.proof .stat span { font-size: 12px; color: var(--white-dim); }
+
+.q-band blockquote { border-left: 3px solid var(--coral); background: var(--navy-mid); padding: 16px 20px; font-style: italic; margin: 0 0 14px; border-radius: 0 10px 10px 0; font-size: 16.5px; }
+.q-band .answer { font-size: 16px; font-weight: 600; }
+
+footer { border-top: 1px solid var(--border); padding: 26px 0 46px; font-size: 12px; color: var(--white-dim); }
+footer .links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 12px; }
+footer .naming { color: var(--white); font-size: 13px; max-width: 580px; margin: 0 0 12px; }
+footer .naming em { color: var(--cyan); font-style: italic; }
+
+@media (max-width: 720px) {
+  .hero h1 { font-size: 30px; }
+  .pair, .acts, .proof { grid-template-columns: 1fr; }
+  .tetra-strip { gap: 18px; }
+}

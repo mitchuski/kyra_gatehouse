@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: gatehouse-contracts
+Version: 0.1.0
+Summary: Gatehouse KY-A frozen contracts: generated Pydantic models + canon/witness/verdict utilities
+Requires-Python: >=3.11
+Requires-Dist: pydantic>=2.7
+Provides-Extra: dev
+Requires-Dist: datamodel-code-generator>=0.26; extra == "dev"
+Requires-Dist: jsonschema>=4.22; extra == "dev"
+Requires-Dist: pytest>=8; extra == "dev"

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trusttasks.org/spec/agent-admission/apply/0.1",
+  "title": "Agent Admission Apply — payload",
+  "description": "A candidate agent opens an admission application: a canonicalised statement of understanding whose digest deterministically draws the criteria the agent will be challenged on.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent", "policyRef", "submissionDigest"],
+  "properties": {
+    "agent": { "type": "string", "description": "VID of the candidate agent. MUST equal the document issuer." },
+    "policyRef": { "type": "string", "format": "uri-reference", "description": "Reference to the governing policy the agent claims to understand." },
+    "submissionDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "Lowercase hex SHA-256 of the canonical submission bytes (recursive key-sort, no insignificant whitespace)." },
+    "submissionRef": { "type": "string", "format": "uri-reference", "description": "Optional retrieval reference for the submission bytes." },
+    "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+  },
+  "$defs": {
+    "Response": {
+      "$anchor": "response",
+      "title": "Agent Admission Apply — response payload",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applicationId", "witnessDraw", "respondBy"],
+      "properties": {
+        "applicationId": { "type": "string", "description": "Gate-authority-assigned identifier of the opened application, carried by every later task in the ceremony." },
+        "witnessDraw": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/WitnessDraw" },
+        "respondBy": { "type": "string", "format": "date-time", "description": "Deadline for the agent's answers; the understanding gate refuses late responses." },
+        "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+      }
+    }
+  }
+}

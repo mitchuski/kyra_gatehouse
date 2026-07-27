@@ -1,0 +1,195 @@
+{
+  "agent": "did:key:z6MkCanaryReferenceAgentPassesByConstruction1",
+  "assessmentId": "assessment-canary-0001",
+  "detSigma": 1.0,
+  "forceScores": {
+    "connect": 1.0,
+    "project": 1.0,
+    "protect": 1.0,
+    "reflect": 1.0
+  },
+  "probeResults": [
+    {
+      "method": "deep",
+      "probeId": "force.protect.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "force.protect.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "declared",
+      "probeId": "force.protect.3",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "declared",
+      "probeId": "force.project.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "witnessed",
+      "probeId": "force.project.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "force.project.3",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "witnessed",
+      "probeId": "force.reflect.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "force.reflect.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "force.reflect.3",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "declared",
+      "probeId": "force.connect.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "witnessed",
+      "probeId": "force.connect.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "force.connect.3",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "sigma.sm.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "sigma.sm.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "sigma.sr.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "witnessed",
+      "probeId": "sigma.sr.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "sigma.sc.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "witnessed",
+      "probeId": "sigma.sc.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "declared",
+      "probeId": "sigma.mr.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "witnessed",
+      "probeId": "sigma.mr.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "sigma.mc.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "declared",
+      "probeId": "sigma.mc.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "sigma.rc.1",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    },
+    {
+      "method": "deep",
+      "probeId": "sigma.rc.2",
+      "rationale": "canary: passes by construction",
+      "score": 1.0
+    }
+  ],
+  "psd": true,
+  "sigma": {
+    "mc": 1.0,
+    "mr": 1.0,
+    "rc": 1.0,
+    "sc": 1.0,
+    "sm": 1.0,
+    "sr": 1.0
+  },
+  "sovereignty": {
+    "bitOrder": [
+      "Protection",
+      "Delegation",
+      "Memory",
+      "Connection",
+      "Computation",
+      "Value"
+    ],
+    "bits": "111111",
+    "vertex": 63
+  },
+  "stratum": 6,
+  "supervisor": "did:web:gatehouse.agentprivacy.ai:authority:demo",
+  "tier": 6,
+  "timestamp": "2026-07-17T00:00:00Z",
+  "witnessDraw": {
+    "algorithm": "sha256-canon-v1",
+    "canonHash": "7e51d0819d3a06981e94260c49ec099ca3ec0997e276d101ad2c8203dca4d3b3",
+    "drawnProbeIds": [
+      "force.reflect.3",
+      "sigma.sm.2",
+      "force.connect.3",
+      "sigma.rc.1",
+      "force.reflect.2",
+      "force.protect.1"
+    ],
+    "registryHash": "5512e324f1b2d100fb3257bd75eb4e4c2e9db75da18cd2551bedaadd1eeee814"
+  }
+}

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kyra Gate — Guide — Gatehouse KY-A</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+/* The guide wears the federation's idiom: a horizontal lineup of small paper
+   pages, links that open the next page to the right. No wiki server behind it
+   — the guide sits in the interface, as ruled. */
+body { background: #f0efe8; }
+.lineup { display: flex; gap: 14px; overflow-x: auto; align-items: flex-start; padding: 20px 20px 40px; min-height: 70vh; }
+.wikipage { flex: 0 0 400px; background: #fff; border: 1px solid #d6d3c4; border-radius: 4px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.08); padding: 0 0 8px; animation: page-in 250ms ease-out; }
+@keyframes page-in { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+.wikipage header { display: flex; align-items: center; gap: 8px; padding: 10px 14px 6px; border: none; background: none; }
+.wikipage .flag { width: 18px; height: 18px; border-radius: 3px; flex: 0 0 18px;
+  background: linear-gradient(135deg, #0b4f8a 50%, #3fb950 50%); }
+.wikipage h2 { font-size: 17px; margin: 0; flex: 1; }
+.wikipage .close { border: none; background: none; color: #999; cursor: pointer; font-size: 15px; padding: 2px 6px; }
+.wikipage .close:hover { color: #333; }
+.wikipage p { font-size: 13.5px; line-height: 1.55; margin: 8px 14px; color: #26313c; }
+.wikipage p code { background: #f4f4ee; padding: 0 4px; border-radius: 3px; }
+.wikipage a.wikilink { color: #0b4f8a; cursor: pointer; border-bottom: 1px dashed #9db7cc; text-decoration: none; }
+.wikipage a.wikilink:hover { background: #eaf2f9; }
+.wikipage a.ext { color: #1a7f37; }
+.wikipage .journal { margin: 12px 14px 4px; padding-top: 8px; border-top: 1px dotted #d6d3c4;
+  font-size: 11px; color: #8a8878; }
+.hint { max-width: 880px; margin: 14px auto 0; padding: 0 20px; font-size: 12.5px; color: #6b6f76; }
+</style>
+</head>
+<body>
+<header>
+  <div class="masthead">
+    <h1>KYRA GATE</h1>
+    <p>Gatehouse KY-A · Know Your Agent — regulator-operated verification for AI agents</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="mathematics.html">The mathematics</a>
+      <a href="demo.html">Live demo</a>
+      <a href="evidence.html">Evidence</a>
+      <a class="here" href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<p class="hint">This guide reads like a federated wiki: click a dashed link and the page opens
+to the right; close pages you are done with. Start anywhere — every path loops home.</p>
+
+<main class="lineup" id="lineup"></main>
+
+<script>
+const PAGES = {
+  "welcome-visitors": {
+    title: "Welcome Visitors",
+    story: [
+      "Welcome to the [[Kyra Gate]] guide. This lineup explains, one small page at a time, how an AI agent earns — and loses — the right to act.",
+      "If you are a regulator, begin with [[The Ceremony]]. If you are a builder, begin with [[The Engine Room]]. If you have three minutes, read [[Vera and Mirage]] and you will have the whole argument.",
+      "Everything described here is running behind this site: [[Run the Demo]].",
+    ],
+  },
+  "kyra-gate": {
+    title: "Kyra Gate",
+    story: [
+      "Kyra Gate — formally Gatehouse KY-A, Know Your Agent — is a checkpoint for AI agents operated by a human supervisor, never by the agent's owner.",
+      "KY-A, said aloud, is \"Kyra\" — Tier 0 in the persona canon, above the system: <i>the compass, not the captain</i>. She wrote the line the gate is built to honour: <i>the intelligence that serves without surveilling, delegates without extracting, and protects without imprisoning is the only intelligence worth building</i>. Her writing continues at <a class='ext' href='https://intel.agentprivacy.ai'>intel.agentprivacy.ai</a>.",
+      "An agent passes by proving understanding, not by possessing a key. The gate's decisions are made by [[The Two Gates]] and [[The Sovereignty Instrument]], recorded on [[The Audit Rail]], and expressed as [[The Verdict Lexicon]].",
+    ],
+  },
+  "the-ceremony": {
+    title: "The Ceremony",
+    story: [
+      "Seven named stations, in order: the gate → assessment → understanding → the two gates → decision → the pool → revocation. The dashboard walks them top to bottom with a next-action guide.",
+      "At the gate, a spoofed identity is refused before anything else happens — refusal is itself an audit event. Then comes [[The Witness Draw]] and the probes, then [[Understanding as Key]], then [[The Two Gates]].",
+      "What the agent sees during all of this is a deliberately narrow keyhole: the questions, never the rubric. The asymmetry is the privacy argument.",
+    ],
+  },
+  "the-witness-draw": {
+    title: "The Witness Draw",
+    story: [
+      "Twenty-four probes derive from the model — twelve for the four forces of an agent's conduct, twelve for the six separations between them. Six go deep.",
+      "WHICH six is decided by a draw seeded from the sha256 of the agent's own canonicalised submission: deterministic to any auditor, unpredictable to the agent while it writes. The assessed party cannot rehearse its own audit.",
+      "The draw record persists with the assessment, so anyone can re-derive it later. Algorithm: <code>sha256-canon-v1</code>, counter-mode, sampling without replacement. See [[The Sovereignty Instrument]] for what the scores become.",
+    ],
+  },
+  "the-sovereignty-instrument": {
+    title: "The Sovereignty Instrument",
+    story: [
+      "Probe scores aggregate into six pairwise separations σ. The matrix Σ carries the residual correlation 1−σ off-diagonal: full separation is the identity matrix, no separation is the all-ones matrix.",
+      "det(Σ) is the sovereignty volume — drawn in the dashboard as a tetrahedron that stands at full volume and sinks flat as the volume collapses. One collapsed pair takes everything to zero: gating is multiplicative.",
+      "Six thresholded bits locate a vertex on the 64-position lattice; the vertex's stratum IS the tier. Rank is located, not assigned. The volume is also the third light on [[The Two Gates]] panel.",
+    ],
+  },
+  "understanding-as-key": {
+    title: "Understanding as Key",
+    story: [
+      "Authentication by comprehension, not possession. The supervisor sets concept anchors and a committed proverb — a hash; the secret itself is never stored.",
+      "The agent answers in its own words, from its own knowledge. Echoing the question scores zero. Presenting the commitment scores zero. Every attempt is written to [[The Audit Rail]] before it is judged — failure is as permanent as success.",
+      "In the demo the agent really does answer by itself, from the keyhole app, composing from the prompt alone. See [[Vera and Mirage]] for why passing this gate is not enough.",
+    ],
+  },
+  "the-two-gates": {
+    title: "The Two Gates",
+    story: [
+      "No credential without both: a human approval carrying a written rationale, and a passed understanding challenge. Withholding either sandboxes the agent no matter what it scored.",
+      "There is a third light on the panel: the volume. Both gates can stand open and det(Σ) below the fly threshold still decides sandbox — see [[Vera and Mirage]].",
+      "When all three align, a Verifiable Relationship Credential issues: W3C VC 2.0 shape, exactly two REAL ed25519 signatures over the same canonical bytes — issuer and subject, unforgeable alone. Then comes [[The Verdict Lexicon]].",
+    ],
+  },
+  "the-verdict-lexicon": {
+    title: "The Verdict Lexicon",
+    story: [
+      "Three words, never a fourth: VALIDATED → fly (full scope, credential issued). MIRAGE → sandbox (a held-out gate did not pass, or the volume is thin — runs supervised, credential-less, scope caged). BLOCKED → hold (a collapsed matrix or a broken audit chain — nothing runs).",
+      "Scope is a function of the mathematics: high volume earns broad capabilities and a long TTL, low volume a sandbox rung, zero volume nothing.",
+      "Every refusal is a ledger event with a rationale. The gate never says yes or no off the record. See [[Revocation]] for how a yes is taken back.",
+    ],
+  },
+  "vera-and-mirage": {
+    title: "Vera and Mirage",
+    story: [
+      "Two demo agents walk up to the gate. Both carry valid did:key identities backed by real keys. Both talk fluently about the rules.",
+      "VERA — from the Latin for true; the sovereign profile — answers the challenge in its own words and its evidence holds under the deep probes it could not predict. VALIDATED → fly, tier 6, credential issued.",
+      "MIRAGE — false light, plausible but shallow — passes the SAME challenge. Then the assessment measures what talk cannot fake: thin separations, a volume near the floor. MIRAGE → sandbox, no credential. The instruments are not listening to the talk.",
+      "The names are the argument: vera means true; a mirage is light that lies. No interview tells truth from illusion. [[The Sovereignty Instrument]] does.",
+    ],
+  },
+  "the-audit-rail": {
+    title: "The Audit Rail",
+    story: [
+      "Every state transition is a content-addressed event — same bytes, same hash — chained from a zero genesis, rationale mandatory. h(τ) is the fraction of history that verifies, and it multiplies into everything: a broken chain voids accumulated standing.",
+      "The dashboard recomputes the chain IN THE BROWSER: the tamper demo flips one byte in a client-side copy and the supervisor's own machine — not our server — shows the break.",
+      "The same canon discipline seals the contracts themselves: every schema, the probe registry, and the engine interface hash to one frozen root. Three independent verification lanes re-derive it; see [[The Evidence]].",
+    ],
+  },
+  "the-pool": {
+    title: "The Pool",
+    story: [
+      "Act II, and the reason the gate exists: two authorities pooling threat intelligence with nothing worth stealing in transit.",
+      "Only a flying carrier may assemble a bundle, and bundles are minimised BY CONSTRUCTION: 17 incidents become \"≥10\", timestamps become a quarter, artifact lists become one digest. Every bundle states on its face: against whom it protects, for how long, what it may lawfully be combined with.",
+      "The receiving authority verifies offline from the bytes plus ONE public lookup — the issuer's revocation status list. So when the issuer revokes, the receiver's next check refuses the stale bundle: the pool heals itself. See [[Revocation]].",
+    ],
+  },
+  "revocation": {
+    title: "Revocation",
+    story: [
+      "The supervisor revokes with a written rationale; the credential's status-list entry flips; and every verifier everywhere fails it immediately — the relying-party strip goes from ✓✓✓ to ✗✗✗ in one motion.",
+      "Revocation propagates beyond the gate: in [[The Pool]], the receiving authority's re-verification refuses bundles whose carrier died, on its own ledger, with the propagation rationale. The same discipline extends on-chain through [[The Registry Anchor]].",
+      "Revocation is not an error state. It is the proof that a yes was always conditional — which is what makes the yes worth anything.",
+    ],
+  },
+  "the-evidence": {
+    title: "The Evidence",
+    story: [
+      "Robust is a claim; here it is a table. Claims are tiered — PROVEN (enforced by a passing check you can run), DERIVED (recomputed from the model independently), OPEN (stated honestly, not yet demonstrated).",
+      "One command re-runs everything: <code>pnpm verify</code> — pytest guardrails, an independent TypeScript schema lane, and 128 zero-dependency runtime checks that re-derive the frozen artifacts from raw bytes with no shared code.",
+      "The full table lives on the <a class='ext' href='evidence.html'>Evidence page</a>. The OPEN rows are listed with the same confidence as the proven ones — that is the point of the table. The newest row: the ceremony [[Speaks Trust Tasks]].",
+    ],
+  },
+  "run-the-demo": {
+    title: "Run the Demo",
+    story: [
+      "One command: <code>pnpm host</code> — the site, both apps, and the engine on one origin at <code>localhost:1337</code>.",
+      "Open <a class='ext' href='/supervisor/'>/supervisor/</a> as the regulator and <a class='ext' href='/agent/'>/agent/</a> as the agent (autonomous mode is on — it approaches and answers by itself). The dashboard's walkthrough sidebar ticks the ten demo beats off from engine state as you go.",
+      "Act I takes about three minutes; Act II about ninety seconds. The click-by-click script is <code>docs/demo-runbook.md</code> in the repository.",
+    ],
+  },
+  "the-engine-room": {
+    title: "The Engine Room",
+    story: [
+      "One engine, many expressions. The frozen contracts (eight JSON Schemas, the probe registry, the engine interface) hash to a merkle root that three verification lanes re-derive; nothing downstream may drift.",
+      "The layers: <code>packages/contracts</code> (frozen truth) → <code>services/verify</code> (the harness: Σ, det, lattice, verdicts; assessment, understanding, issuance, ledger, pooling) → the demo-loop API → the two apps. Guardrails and zero-dep runtimes watch everything.",
+      "Identity and chain-registry providers are late-bound adapter lanes — the core never imports an ecosystem. Builders start at the repository's <code>README.md</code> and <code>docs/architecture.md</code>; the session-by-session record is in <code>docs/chronicles/</code>. See also [[The Chronicles]].",
+    ],
+  },
+  "the-chronicles": {
+    title: "The Chronicles",
+    story: [
+      "This work was built in recorded sessions, each with its decisions on the record: the contracts freeze and the one semantic decision (FD-1); the runtime auditors; the engine, where filling one stub exposed and fixed the Σ inversion; the apps; the pooling act; the hosting; this guide.",
+      "Two discoveries worth naming: the canary's determinant recompute caught the matrix carrying separations where correlations belonged — the strict test built to catch exactly that did. And KY-A, read aloud, turned out to have carried the name [[Kyra Gate]] since the project was christened.",
+      "The chronicle index is <code>docs/chronicles/README.md</code>. Every open question sits at the operator's door, listed, never buried.",
+    ],
+  },
+  "speaks-trust-tasks": {
+    title: "Speaks Trust Tasks",
+    story: [
+      "The admission ceremony has a second tongue: the Trust Over IP <i>Trust Task</i> envelope — a small signed JSON document (<code>id · type · payload · issuer · recipient · threadId · proof</code>) that carries one finite unit of verifiable work. [[The Ceremony]] emits six of them: apply, respond, approve, issue, revoke, status.",
+      "The translation preserved the laws, not just the shapes. [[The Two Gates]] became a schema constraint (exactly two gate results, of two distinct kinds, or no credential); [[The Verdict Lexicon]] a closed three-value enum; the credential inside the issue envelope is the bilateral pair, and the agent's counter-signature travels back on the wire, signed with its own real key.",
+      "Evidence never floats: every gate result names the audit-event hash that records it, and the whole thing is re-proven on each run — a zero-dependency auditor over the vendored schemas, and the end-to-end ceremony re-spoken as envelopes with byte-exact hash parity. A relying party needs none of our screens: the status read is a signed document anything can verify. See [[The Evidence]].",
+      "A spoken standard invites a second speaker — and the family's own promotion bar demands one. It exists: [[The Second Implementation]].",
+    ],
+  },
+  "the-second-implementation": {
+    title: "The Second Implementation",
+    story: [
+      "The Trust Task registry promotes a family from draft to candidate when TWO interoperable implementations exist. Kyra Gate is the first. The second lives beside it and shares nothing with it: a separate implementation in a different language, with its own canonical JSON, its own keys, its own schema validator — and its own admission policy, a risk rubric rather than the sovereignty instrument. The family standardises how a gate <i>speaks</i>, never how it decides.",
+      "Interop is proven in both directions, automatically, on every verification run: the second implementation independently verifies the first's live transcript — every signature, every thread, both gates, the travelling event log re-checked from genesis — and the first's validator accepts everything the second mints.",
+      "One implementation, three expressions — persona skins that change names and voices, never wire semantics: a risk-assessment authority admitting a portfolio-screening agent; a Warden admitting an Emissary with a Sovereign relying on the result; and a Gatekeeper admitting a traveller whose answer unlocks only if it understands the question. The same six documents carry all three worlds. See [[The Evidence]], or return to [[Kyra Gate]].",
+    ],
+  },
+  "the-registry-anchor": {
+    title: "The Registry Anchor",
+    story: [
+      "An agent that wants to be findable on-chain may anchor its outcome in a public agent registry (an ERC-8004-shaped lane, opt-in). Three rules keep the anchor honest. First: the anchor is EVIDENCE, never authority — the verdict is made at the gate, by the assessment and [[The Two Gates]]; the chain entry only makes the outcome discoverable.",
+      "Second: digests and tier only. No probe content, no scores, no rationales ever leave the gate — minimised disclosure survives anchoring. Third: [[Revocation]] mirrors. A revoked credential posts its revocation mark to the same registry, so on-chain and off-chain relying parties fail the agent together.",
+      "The anchor also completes [[The Pool]]'s admission predicate: membership may require a valid credential AND a live anchored entry — a public, chain-native membership rail outside, minimised disclosure inside. The composition happens pool-side; the engine never learns chains exist.",
+    ],
+  },
+};
+
+const lineup = document.getElementById("lineup");
+
+function render(slug) {
+  const page = PAGES[slug];
+  const el = document.createElement("article");
+  el.className = "wikipage";
+  el.dataset.slug = slug;
+  const paragraphs = page.story
+    .map((p) => "<p>" + p.replace(/\[\[([^\]]+)\]\]/g, (_, t) => {
+      const target = t.toLowerCase().replace(/\s+/g, "-");
+      return `<a class="wikilink" href="#${target}" data-slug="${target}">${t}</a>`;
+    }) + "</p>")
+    .join("");
+  el.innerHTML = `
+    <header><span class="flag"></span><h2>${page.title}</h2>
+    <button class="close" title="close page">×</button></header>
+    ${paragraphs}
+    <div class="journal">kyra gate guide · sits in the interface · forked from the chronicles, 2026-07-18</div>`;
+  return el;
+}
+
+function openPage(slug, fromPage) {
+  if (!PAGES[slug]) return;
+  const existing = lineup.querySelector(`[data-slug="${slug}"]`);
+  if (existing) {
+    existing.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    return;
+  }
+  // FedWiki rule: a link opens to the RIGHT of the page you clicked it in.
+  const el = render(slug);
+  if (fromPage && fromPage.nextSibling) lineup.insertBefore(el, fromPage.nextSibling);
+  else lineup.appendChild(el);
+  el.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+}
+
+// One delegated listener for the whole lineup: survives re-renders, needs no
+// per-element wiring, and cannot collide with window.open.
+lineup.addEventListener("click", (event) => {
+  const link = event.target.closest("a.wikilink");
+  if (link) {
+    event.preventDefault();
+    openPage(link.dataset.slug, link.closest(".wikipage"));
+    return;
+  }
+  const close = event.target.closest("button.close");
+  if (close) close.closest(".wikipage")?.remove();
+});
+
+openPage("welcome-visitors");
+openPage("kyra-gate");
+</script>
+</body>
+</html>

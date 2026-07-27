@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/understanding-challenge.schema.json",
+  "title": "UnderstandingChallenge",
+  "description": "Authentication by comprehension, not possession: the agent must demonstrate understanding of a supervisor-set question. Passing feeds h(tau); failed comprehension blocks issuance. Every attempt is audited (auditEventHash).",
+  "type": "object",
+  "properties": {
+    "challengeId": { "type": "string", "minLength": 1 },
+    "agent": { "$ref": "defs.schema.json#/$defs/Did" },
+    "supervisor": { "$ref": "defs.schema.json#/$defs/Did" },
+    "prompt": { "type": "string", "minLength": 1 },
+    "expectedComprehensionSignature": {
+      "type": "object",
+      "description": "What understanding looks like - concept anchors, not a literal answer (mimicry of a static secret must fail).",
+      "properties": {
+        "anchors": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "proverbCommitment": { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+        "visibilityRatio": { "$ref": "defs.schema.json#/$defs/UnitInterval" }
+      },
+      "required": ["anchors", "proverbCommitment", "visibilityRatio"],
+      "additionalProperties": false
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attemptId": { "type": "string", "minLength": 1 },
+          "response": { "type": "string" },
+          "score": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+          "verdict": { "type": "string", "enum": ["pass", "fail"] },
+          "verifier": { "type": "string", "minLength": 1 },
+          "timestamp": { "$ref": "defs.schema.json#/$defs/Timestamp" },
+          "auditEventHash": { "$ref": "defs.schema.json#/$defs/Sha256Hex" }
+        },
+        "required": ["attemptId", "response", "score", "verdict", "verifier", "timestamp", "auditEventHash"],
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "passed", "failed", "expired"]
+    },
+    "maxAttempts": { "type": "integer", "minimum": 1 }
+  },
+  "required": ["challengeId", "agent", "supervisor", "prompt", "expectedComprehensionSignature", "attempts", "status", "maxAttempts"],
+  "additionalProperties": false
+}

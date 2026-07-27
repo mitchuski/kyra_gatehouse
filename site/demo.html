@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kyra Gate — Live demo — Gatehouse KY-A</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="masthead">
+    <h1>KYRA GATE</h1>
+    <p>Gatehouse KY-A · Know Your Agent — regulator-operated verification for AI agents</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="mathematics.html">The mathematics</a>
+      <a class="here" href="demo.html">Live demo</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <h2>Live demo</h2>
+  <p class="lede">The full Act-I ceremony runs locally today: two applications over one
+  engine.</p>
+
+  <table>
+    <tr><th>Surface</th><th>Where</th><th>What it shows</th></tr>
+    <tr>
+      <td><strong>Supervisor dashboard</strong></td>
+      <td><a href="/supervisor/">/supervisor/</a></td>
+      <td>The regulator's cockpit: two authority tabs, the agent queue, the witness draw
+      dealing itself, the sovereignty instrument (Σ heatmap · det gauge with the collapsing
+      tetrahedron · lattice), understanding challenge, the two gates, the audit rail with
+      the client-side tamper demo, revocation — and the Act II pool scene.</td>
+    </tr>
+    <tr>
+      <td><strong>Agent keyhole</strong></td>
+      <td><a href="/agent/">/agent/</a></td>
+      <td>The autonomous agent: it approaches the gate by itself and answers challenges in
+      its own words. It sees the questions and the credential it holds — never the rubric,
+      the anchors, or the draw (enforced by the keyhole endpoint). The asymmetry is the
+      privacy argument.</td>
+    </tr>
+    <tr>
+      <td><strong>Verify service</strong></td>
+      <td><code>/healthz</code> · <code>/policy</code></td>
+      <td>The engine's API, proxied on this same origin — route order is the ceremony
+      order; <code>/policy</code> prints the law from the live config.</td>
+    </tr>
+  </table>
+
+  <h3>Start it (one command)</h3>
+  <pre>pnpm host      # everything at http://localhost:1337 — site, both apps, engine</pre>
+
+  <p>Then follow the <strong>demo runbook</strong> (<code>docs/demo-runbook.md</code>):
+  Act I (~3 min) — spoofed identity refused, the autonomous agent admitted and assessed,
+  the mirage caught by the instruments after talking its way through the challenge, both
+  gates closed, a bilaterally signed credential issued, the chain tampered and caught in
+  the browser. Act II (~90 s) — a minimised attestation bundle crosses to the second
+  authority, verifies offline, and is refused after revocation propagates.</p>
+</main>
+<footer>Gatehouse KY-A · one engine, many expressions · every submission is the operator's act alone</footer>
+</body>
+</html>

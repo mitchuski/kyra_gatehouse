@@ -1,0 +1,6 @@
+pydantic>=2.7
+
+[dev]
+datamodel-code-generator>=0.26
+jsonschema>=4.22
+pytest>=8

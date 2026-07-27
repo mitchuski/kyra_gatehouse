@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trusttasks.org/spec/agent-admission/_shared/0.1/admission",
+  "title": "Shared definitions for the agent-admission/* spec family",
+  "description": "Canonical $defs referenced by every agent-admission/* specification: the closed admission verdict lexicon, the deterministic witness draw, the gate result, the evidence reference into the content-addressed audit ledger, and the derived tier grant. Not itself a Trust Task specification (the `_shared` folder is skipped by the registry build and the codegen).",
+  "$defs": {
+    "Verdict": {
+      "title": "Verdict",
+      "type": "string",
+      "enum": ["validated", "failedHeldOut", "blocked"],
+      "description": "The closed admission verdict lexicon. `validated` — both gates passed, the agent deploys within its granted scope. `failedHeldOut` — the agent passed the visible criteria but failed a held-out probe; it is sandboxed, not admitted. `blocked` — the agent violated a hard constraint; no credential issues at all. Exactly three verdicts; a consumer MUST reject any other value (`unknownVerdict`) rather than coerce it. The lexicon is closed for the same reason the category taxonomy of this registry is a schema: an invented fourth verdict is how an admission scheme quietly loses its meaning."
+    },
+    "WitnessDraw": {
+      "title": "WitnessDraw",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "submissionDigest", "criteria"],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["sha256-canonical-json"],
+          "description": "Draw derivation. `sha256-canonical-json`: criteria are sampled deterministically from the SHA-256 of the candidate's canonicalised submission (recursive key-sort, no insignificant whitespace). The candidate cannot know which criteria will be probed while it writes the submission, and any auditor holding the canonical bytes can re-derive the draw."
+        },
+        "submissionDigest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "Lowercase hex SHA-256 of the canonical submission bytes the draw was derived from."
+        },
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["criterionId", "prompt"],
+            "properties": {
+              "criterionId": { "type": "string", "description": "Stable identifier of the drawn criterion within the governing policy." },
+              "prompt": { "type": "string", "description": "The understanding prompt the candidate must answer from comprehension of the governing policy." }
+            }
+          },
+          "description": "The drawn understanding criteria, in draw order."
+        }
+      },
+      "description": "The deterministic witness draw: the anti-grooming mechanism. Because the criteria are a function of the candidate's own submission digest, the submission cannot be written to the test."
+    },
+    "GateResult": {
+      "title": "GateResult",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate", "passed", "at", "evidenceDigest"],
+      "properties": {
+        "gate": {
+          "type": "string",
+          "enum": ["supervisorApproval", "understandingChallenge"],
+          "description": "Which of the two gates this result records. The two kinds are distinct on purpose; two results of the same kind never satisfy the two-gate rule."
+        },
+        "passed": { "type": "boolean" },
+        "at": { "type": "string", "format": "date-time" },
+        "evidenceDigest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "Lowercase hex SHA-256 of the audit-ledger event recording this gate. A gate result whose evidence does not resolve into the verified ledger is void."
+        }
+      },
+      "description": "A recorded gate outcome, anchored into the content-addressed audit ledger."
+    },
+    "TierGrant": {
+      "title": "TierGrant",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier", "scopeFunction"],
+      "properties": {
+        "tier": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The granted admission tier. Opaque to the framework; its meaning is fixed by `scopeFunction`."
+        },
+        "scopeFunction": {
+          "type": "string",
+          "format": "uri-reference",
+          "description": "Resolvable reference to the published function mapping assessment results to tiers and tiers to deployment scope. Scope is derived from the published function, never negotiated per-agent — the same numbers that gate deployment print the rule a relying party reads."
+        }
+      },
+      "description": "A derived, auditable scope grant. High assessments earn broad scope, weak ones a sandbox; a detected inconsistency in the assessment holds admission entirely."
+    },
+    "AnchorRef": {
+      "title": "AnchorRef",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace", "ref"],
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*(\\.[a-z0-9-]+)+$",
+          "description": "Reverse-DNS namespace of the external registry the outcome is anchored on (e.g. an ERC-8004 registry adapter's namespace)."
+        },
+        "ref": { "type": "string", "description": "Opaque locator of the anchored entry within that registry." }
+      },
+      "description": "Reference to an external anchor of an admission outcome. Anchors are evidence, never authority: the verdict comes from the ceremony; the anchor only makes the outcome discoverable, and carries digests and tier only — no challenge content."
+    }
+  }
+}

@@ -1,0 +1,153 @@
+# render/expressions.yaml — the expression registry.
+# One engine, many expressions. Adding, forking, or withdrawing a submission
+# is an edit HERE, never a change to packages/ or services/.
+# status: idea | drafting | submitted | shipped | withdrawn
+# register: standards | technical | mythopoetic-edges
+# Deadlines are data. Final send/submit/publish is Mitchell's act alone (T6/G4).
+
+version: 1
+updated: 2026-07-17
+
+expressions:
+
+  - id: cdir-track4-note
+    ecosystem: cdir
+    artifact: concept-note
+    register: standards
+    deadline: 2026-07-31
+    status: drafting
+    notes: >
+      Track 4 (KY-A / DPI). Anchored on the pooling question: secure dynamic
+      data-sharing for AI-threat intelligence without violating privacy laws.
+      1,500 words + schematic. Cites gatehouse site URL and claims register.
+
+  - id: cdir-pooling-demo
+    ecosystem: cdir
+    artifact: prototype+video
+    register: standards
+    deadline: 2026-09-08
+    status: idea
+    notes: >
+      Two-act demo loop (Section 3 of the plan). Act II two-authority pooling
+      is the differentiator. 5-minute video; Gatehouse ceremony cold open is
+      the one permitted mythopoetic edge.
+
+  - id: gatehouse-site
+    ecosystem: cdir
+    artifact: site
+    register: standards
+    deadline: 2026-07-31   # skeleton + 2 pages; full by demo week
+    status: drafting
+    notes: >
+      WP9. gatehouse.agentprivacy.ai, five pages, evidence table in
+      claims_register format. 2026-07-18: all five pages BUILT LOCALLY,
+      served at localhost:1337 (`pnpm site`, site/ dir, zero deps).
+      Deploys only after hack acceptance (Mitchell's ruling + act).
+
+  - id: gdc-wallet-assurance
+    ecosystem: bgin
+    artifact: session-material
+    register: standards
+    deadline: 2026-07-31
+    status: drafting
+    notes: >
+      Harvest shared paragraphs with cdir-track4-note; key-management
+      assurance layer = the scope ladder + custody-under-delegation framing.
+
+  - id: gdc-vulnerability-handling
+    ecosystem: bgin
+    artifact: session-material
+    register: standards
+    deadline: 2026-07-31
+    status: drafting
+    notes: >
+      Agentic-era vulnerability handling; overlaps the cyber-risk guardrail
+      section nearly verbatim.
+
+  - id: block15-ikp-case-study
+    ecosystem: bgin
+    artifact: case-study
+    register: standards
+    deadline: 2026-10-01   # provisional, ahead of Block 15
+    status: idea
+    notes: >
+      WP8 render. Consumes the audit trail of a real demo run plus regulator
+      voting feedback. Standards-to-build-to-supervision loop closed.
+
+  - id: hearthold-mechanism-adoption
+    ecosystem: hearthold-archon
+    artifact: internal
+    register: technical
+    deadline: null
+    status: shipped
+    notes: >
+      Canary, Gap witness-draw, verdict lexicon adopted into CLAUDE.md and WP7.
+      Attribution kept. The seat itself is out of scope; plurality framing only.
+
+  - id: hearthold-identity-round
+    ecosystem: hearthold-archon
+    artifact: harness-round
+    register: technical
+    deadline: null
+    status: idea
+    notes: >
+      Possible future joint round on the open identity gaps (did:cid
+      resolution integrity, sword-perp-mage identity separation, custody under
+      delegation). Requires agreement between First Persons first. Do not
+      schedule; do not build against the seat.
+
+  - id: impl2-risk-mastery
+    ecosystem: risk-mastery
+    artifact: interop-implementation
+    register: standards
+    deadline: null
+    status: drafting
+    notes: >
+      Implementation #2 of the agent-admission/* Trust Task family, expressed
+      as the Risk Mastery admission desk (interop/impl2, risk-mastery.json).
+      Interop proven both directions on every pnpm verify. Ecosystem details
+      and any external use are Mitchell's to define.
+
+  - id: impl2-archon-hearthold
+    ecosystem: hearthold-archon
+    artifact: interop-implementation
+    register: technical
+    deadline: null
+    status: drafting
+    notes: >
+      The same second implementation expressed with the upstream Warden /
+      Emissary / Sovereign cast (interop/impl2, archon-hearthold.json).
+      Persona only — no hearthold code imported; the seat fence stands.
+
+  - id: impl2-hitchhikers
+    ecosystem: hitchhikers
+    artifact: interop-implementation
+    register: mythopoetic-edges
+    deadline: null
+    status: drafting
+    notes: >
+      The same second implementation expressed as the traveller at the gate
+      (interop/impl2, hitchhikers.json). Edge register lives only in persona
+      strings; the wire documents are register-neutral standards artifacts.
+
+  - id: hitchhiker-ceremony-edge
+    ecosystem: hitchhikers
+    artifact: framing
+    register: mythopoetic-edges
+    deadline: null
+    status: active
+    notes: >
+      Gatehouse ceremony as video cold open; Understanding-as-Key as the
+      "answer unlocks only if you understand the question" beat. Edges only:
+      never in engine code, never in standards prose.
+
+  - id: hitchhiker-timeline-milestone
+    ecosystem: hitchhikers
+    artifact: timeline-entry
+    register: mythopoetic-edges
+    deadline: null
+    status: idea
+    notes: >
+      Agent verification as the next node on timeline.ide.earth beside
+      Privacy Pools, MyTerms, Trust Graph. Ships only after something real
+      ships.

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kyra Gate — How it works — Gatehouse KY-A</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="masthead">
+    <h1>KYRA GATE</h1>
+    <p>Gatehouse KY-A · Know Your Agent — regulator-operated verification for AI agents</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a class="here" href="how-it-works.html">How it works</a>
+      <a href="mathematics.html">The mathematics</a>
+      <a href="demo.html">Live demo</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <h2>How it works</h2>
+  <p class="lede">Seven stations, four guardrails, one rule everywhere: the gate says
+  yes or no <em>on the record</em>.</p>
+
+  <h3>1 · Approach — spoof refusal</h3>
+  <p>An identity that does not verify is refused <strong>before assessment</strong>. For
+  <code>did:key</code>, the DID must bind its own public key; the refusal itself is an audit
+  event. Identity providers are pluggable adapters — the core never depends on any one stack.</p>
+
+  <h3>2 · Assess — evidence, not self-assertion</h3>
+  <p>24 probes derive from the model (never a fixed checklist): 12 probe the four forces an
+  agent must hold — protect, project, reflect, connect — and 12 probe the six pairwise
+  separations between them. Six probes are selected for deep verification by a draw seeded
+  from the sha256 of the agent's <em>own canonicalised submission</em>: the agent cannot know
+  which probes will be probed while it writes, and any auditor can re-derive the draw.</p>
+
+  <h3>3 · Challenge — understanding as key</h3>
+  <p>Authentication by comprehension, not possession. The supervisor sets concept anchors and
+  a committed proverb (a hash — the secret is never stored). The agent must answer in its own
+  words: echoing the prompt scores zero; presenting the commitment scores zero. Every attempt
+  is ledgered before it is judged — failure is as permanent as success.</p>
+
+  <h3>4 · Approve — the human in the loop</h3>
+  <p>No credential issues without a supervisor approval carrying a written rationale, recorded
+  as a chained audit event. This is a gate, not a rubber stamp: withholding it sandboxes the
+  agent regardless of its scores.</p>
+
+  <h3>5 · Issue — the bilateral credential</h3>
+  <p>A Verifiable Relationship Credential (W3C VC 2.0 shape) issues only when BOTH gates
+  passed. It carries exactly two proofs — issuer and subject; unforgeable alone — and every
+  piece of evidence in it points at a verified audit event. Verdicts are a closed lexicon:
+  <span class="fly">VALIDATED → fly</span>, <span class="sandbox">MIRAGE → sandbox</span>,
+  <span class="hold">BLOCKED → hold</span>. A sandboxed agent runs credential-less under a
+  capped manifest; a held agent does not run at all.</p>
+
+  <h3>6 · Deploy — scope by variance</h3>
+  <p>The granted capability set and its TTL are a function of det(Σ) and the agent's lattice
+  stratum — high volume earns broad scope, low volume a sandbox, collapsed volume nothing.
+  The same config numbers that gate deployment print the policy a regulator reads
+  (a Lexon-style controlled-natural-language term; correspondence is tested).</p>
+
+  <h3>7 · Revoke — and audit, always</h3>
+  <p>Every state transition is a content-addressed event chained to the prior one — same
+  bytes, same hash. The supervisor's dashboard recomputes the chain in the browser: flip one
+  byte and the break is visible locally, without trusting any server. Revocation flips a
+  status-list entry and fails the credential for every relying party, immediately.</p>
+
+  <h3>The four guardrails, as mechanisms</h3>
+  <table>
+    <tr><th>Guardrail</th><th>Mechanism</th><th>Where enforced</th></tr>
+    <tr><td>Human-in-the-loop</td><td>issuance requires approval + passed challenge</td><td>two-gates ceremony (tested)</td></tr>
+    <tr><td>Auditability</td><td>hash-chained ledger, rationale mandatory</td><td>canon discipline + browser recompute</td></tr>
+    <tr><td>Safety &amp; governance</td><td>tier gates, variance thresholds, revocation</td><td>verdict lexicon + scope ladder</td></tr>
+    <tr><td>Cyber risk</td><td>validation, spoof rejection before assessment</td><td>identity verification + schema gates</td></tr>
+  </table>
+</main>
+<footer>Gatehouse KY-A · one engine, many expressions · every submission is the operator's act alone</footer>
+</body>
+</html>

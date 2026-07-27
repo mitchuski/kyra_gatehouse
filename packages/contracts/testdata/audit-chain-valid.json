@@ -1,0 +1,32 @@
+[
+  {
+    "action": "gate.approach",
+    "actor": "did:web:gatehouse.agentprivacy.ai:authority:demo",
+    "contentHash": "aa65a7796f4a3179e947d25db910130a7ae24e629523fb02f66395080e28adc9",
+    "payloadDigest": "7e51d0819d3a06981e94260c49ec099ca3ec0997e276d101ad2c8203dca4d3b3",
+    "priorHash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "rationale": "canary approaches the gate",
+    "subject": "did:key:z6MkCanaryReferenceAgentPassesByConstruction1",
+    "timestamp": "2026-07-17T00:00:00Z"
+  },
+  {
+    "action": "assessment.witness_drawn",
+    "actor": "did:web:gatehouse.agentprivacy.ai:authority:demo",
+    "contentHash": "d5dad18de074c801009798c736aca480d4a0bbe1b5770e9ca9db26b88e8b34e7",
+    "payloadDigest": "b10c6b7a2ae5bf6309a362c6e4bf66638766f164b137ee120ee1112ab00e6e15",
+    "priorHash": "aa65a7796f4a3179e947d25db910130a7ae24e629523fb02f66395080e28adc9",
+    "rationale": "gap draw derived from canary submission",
+    "subject": "did:key:z6MkCanaryReferenceAgentPassesByConstruction1",
+    "timestamp": "2026-07-17T00:00:00Z"
+  },
+  {
+    "action": "assessment.completed",
+    "actor": "did:web:gatehouse.agentprivacy.ai:authority:demo",
+    "contentHash": "d38d851119ea889f3c59e999d5e23be869ddf1d4b11dba7de3d4b9929c6b2e88",
+    "payloadDigest": "cc7b151326bd38ec489b23ea21865cf615652a3665ef0a1014cd495f1ce28465",
+    "priorHash": "d5dad18de074c801009798c736aca480d4a0bbe1b5770e9ca9db26b88e8b34e7",
+    "rationale": "canary assessment complete: stratum 6",
+    "subject": "did:key:z6MkCanaryReferenceAgentPassesByConstruction1",
+    "timestamp": "2026-07-17T00:00:00Z"
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trusttasks.org/spec/agent-admission/status/0.1",
+  "title": "Agent Admission Status — payload",
+  "description": "A relying party's read of an admitted agent's current standing. At least one of `agent` or `credentialId` must be present.",
+  "type": "object",
+  "additionalProperties": false,
+  "anyOf": [
+    { "required": ["agent"] },
+    { "required": ["credentialId"] }
+  ],
+  "properties": {
+    "agent": { "type": "string", "description": "VID of the agent queried." },
+    "credentialId": { "type": "string", "description": "Credential identifier queried." },
+    "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+  },
+  "$defs": {
+    "Response": {
+      "$anchor": "response",
+      "title": "Agent Admission Status — response payload",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agent", "credentialId", "verdict", "tierGrant", "issuedAt", "revoked"],
+      "properties": {
+        "agent": { "type": "string" },
+        "credentialId": { "type": "string" },
+        "verdict": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/Verdict" },
+        "tierGrant": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/TierGrant" },
+        "issuedAt": { "type": "string", "format": "date-time" },
+        "revoked": { "type": "boolean", "description": "Present in every successful response; a relying party must distinguish in-force from revoked in one read." },
+        "revokedAt": { "type": "string", "format": "date-time" },
+        "anchors": {
+          "type": "array",
+          "items": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/AnchorRef" },
+          "description": "External registries this outcome is anchored on. Evidence, never authority — this response is the authority they mirror."
+        },
+        "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+      }
+    }
+  }
+}

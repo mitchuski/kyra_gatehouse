@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trusttasks.org/spec/agent-admission/issue/0.1",
+  "title": "Agent Admission Issue — payload",
+  "description": "The gate authority's offer of the bilateral relationship credential: both gate results, the closed-lexicon verdict, the derived tier grant, the ledger head, and the first-signed credential. The agent's counter-signature in the response completes it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["applicationId", "agent", "verdict", "tierGrant", "gates", "ledgerHead", "credential"],
+  "properties": {
+    "applicationId": { "type": "string", "description": "The completed application." },
+    "agent": { "type": "string", "description": "VID of the admitted agent. MUST equal the document recipient." },
+    "verdict": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/Verdict" },
+    "tierGrant": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/TierGrant" },
+    "gates": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "$ref": "../../_shared/0.1/admission.schema.json#/$defs/GateResult" },
+      "description": "Exactly two gate results of distinct kinds: one supervisorApproval, one understandingChallenge. Two results of the same kind never satisfy the two-gate rule."
+    },
+    "ledgerHead": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "Lowercase hex SHA-256 of the audit-ledger head at issuance; every evidenceDigest must resolve into the chain it names." },
+    "credential": {
+      "type": "object",
+      "description": "The first-signed W3C Verifiable Credential expressing the admission relationship. Completed by the agent's counter-signature; exactly two proofs, two roles, two distinct parties."
+    },
+    "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+  },
+  "$defs": {
+    "Response": {
+      "$anchor": "response",
+      "title": "Agent Admission Issue — response payload",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applicationId", "credentialDigest", "counterSigned"],
+      "properties": {
+        "applicationId": { "type": "string" },
+        "credentialDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "Lowercase hex SHA-256 of the completed, counter-signed credential." },
+        "counterSigned": { "type": "boolean", "const": true, "description": "The agent's acceptance; the credential is not in force without it." },
+        "ext": { "$ref": "../../../_framework/0.1/framework.schema.json#/$defs/Ext" }
+      }
+    }
+  }
+}

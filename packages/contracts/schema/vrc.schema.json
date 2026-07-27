@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/vrc.schema.json",
+  "title": "VerifiableRelationshipCredential",
+  "description": "W3C VC 2.0-shaped bilateral credential: unforgeable alone, two proofs (issuer + subject). A VRC is only well-formed if evidence carries BOTH gates: a supervisor approval and a passed understanding challenge (enforced in code + WP7).",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Must begin with https://www.w3.org/ns/credentials/v2"
+    },
+    "type": {
+      "type": "array",
+      "items": { "type": "string" },
+      "allOf": [
+        { "contains": { "const": "VerifiableCredential" } },
+        { "contains": { "const": "VerifiableRelationshipCredential" } }
+      ]
+    },
+    "issuer": { "$ref": "defs.schema.json#/$defs/Did" },
+    "validFrom": { "$ref": "defs.schema.json#/$defs/Timestamp" },
+    "validUntil": { "$ref": "defs.schema.json#/$defs/Timestamp" },
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": { "$ref": "defs.schema.json#/$defs/Did" },
+        "tier": { "$ref": "defs.schema.json#/$defs/Stratum" },
+        "stratum": { "$ref": "defs.schema.json#/$defs/Stratum" },
+        "assessmentDigest": { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+        "relationship": {
+          "type": "object",
+          "description": "The A(tau) record: A(tau) = alpha * ln(1+|tau|) * h(tau).",
+          "properties": {
+            "tauCount": { "type": "integer", "minimum": 0 },
+            "hTau": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+            "aTau": { "type": "number", "minimum": 0 },
+            "proverbCommitment": { "$ref": "defs.schema.json#/$defs/Sha256Hex" },
+            "visibilityRatio": { "$ref": "defs.schema.json#/$defs/UnitInterval" }
+          },
+          "required": ["tauCount", "hTau", "aTau", "proverbCommitment", "visibilityRatio"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["id", "tier", "stratum", "assessmentDigest", "relationship"],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["UnderstandingChallengeAttempt", "SupervisorApproval"]
+          },
+          "auditEventHash": { "$ref": "defs.schema.json#/$defs/Sha256Hex" }
+        },
+        "required": ["type", "auditEventHash"],
+        "additionalProperties": false
+      },
+      "allOf": [
+        { "contains": { "properties": { "type": { "const": "UnderstandingChallengeAttempt" } }, "required": ["type"] } },
+        { "contains": { "properties": { "type": { "const": "SupervisorApproval" } }, "required": ["type"] } }
+      ]
+    },
+    "credentialStatus": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "RevocationList2026" },
+        "statusListRef": { "type": "string", "minLength": 1 },
+        "statusListIndex": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["type", "statusListRef", "statusListIndex"],
+      "additionalProperties": false
+    },
+    "proof": {
+      "type": "array",
+      "description": "BILATERAL: exactly two proofs - issuer (supervisor authority) and subject (agent). Unforgeable alone.",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "minLength": 1 },
+          "verificationMethod": { "type": "string", "minLength": 1 },
+          "created": { "$ref": "defs.schema.json#/$defs/Timestamp" },
+          "proofPurpose": { "type": "string", "minLength": 1 },
+          "proofValue": { "type": "string", "minLength": 1 }
+        },
+        "required": ["type", "verificationMethod", "created", "proofPurpose", "proofValue"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["@context", "type", "issuer", "validFrom", "credentialSubject", "evidence", "credentialStatus", "proof"],
+  "additionalProperties": false
+}

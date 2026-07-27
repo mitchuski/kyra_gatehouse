@@ -1,0 +1,10 @@
+pyproject.toml
+gatehouse_contracts/__init__.py
+gatehouse_contracts/canon.py
+gatehouse_contracts/verdicts.py
+gatehouse_contracts/witness.py
+gatehouse_contracts.egg-info/PKG-INFO
+gatehouse_contracts.egg-info/SOURCES.txt
+gatehouse_contracts.egg-info/dependency_links.txt
+gatehouse_contracts.egg-info/requires.txt
+gatehouse_contracts.egg-info/top_level.txt

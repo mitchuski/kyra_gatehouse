@@ -1,0 +1,19 @@
+{
+  "name": "gatehouse-kya",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Regulator-facing Know Your Agent (KY-A) verification system. One core, three renders.",
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm -r build",
+    "codegen": "node packages/contracts/scripts/codegen.mjs && python packages/contracts/scripts/codegen.py",
+    "codegen:check": "node packages/contracts/scripts/codegen.mjs --check && python packages/contracts/scripts/codegen.py --check",
+    "runtimes": "node runtimes/run.mjs",
+    "host": "node scripts/host.mjs",
+    "site": "node scripts/serve-site.mjs",
+    "test:py": "python -m pytest guardrails -q",
+    "test:ts": "pnpm --dir guardrails/ts test",
+    "verify": "node scripts/verify.mjs"
+  },
+  "packageManager": "pnpm@10.14.0"
+}

@@ -1,0 +1,31 @@
+LEX Gatehouse Policy.
+LEXON: 0.3.20
+COMMENT: The four guardrails and the deploy predicate as controlled natural
+COMMENT: language. The engine's harness (gatehouse_verify.harness.lexon_policy)
+COMMENT: emits the same clauses from live config; WP7 tests the correspondence.
+
+"Supervisor" is a person.
+"Agent" is a counterparty.
+"Credential" is data.
+"Ledger" is data.
+
+CLAUSE: Two Gates.
+The Credential issues only if the Supervisor has approved
+and the Agent has passed the understanding challenge.
+
+CLAUSE: Audit.
+Every state transition is recorded as a content-addressed event
+chained to the prior event.
+A broken chain voids deployment.
+
+CLAUSE: Variance.
+Deployment scope follows the sovereignty volume.
+Below the fly threshold the Agent is sandboxed.
+At zero or collapsed volume deployment is held.
+
+CLAUSE: Revocation.
+The Supervisor may revoke.
+A revoked Credential fails verification everywhere, immediately.
+
+CLAUSE: Spoof Refusal.
+An identity that does not verify is refused before assessment.

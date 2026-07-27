@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kyra Gate — The mathematics — Gatehouse KY-A</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="masthead">
+    <h1>KYRA GATE</h1>
+    <p>Gatehouse KY-A · Know Your Agent — regulator-operated verification for AI agents</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a class="here" href="mathematics.html">The mathematics</a>
+      <a href="demo.html">Live demo</a>
+      <a href="evidence.html">Evidence</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <h2>The mathematics</h2>
+  <p class="lede">Companion-guide depth. Every formula below runs in the engine and is
+  recomputed by independent verification lanes; nothing here is decorative.</p>
+
+  <h3>The sovereignty matrix and its volume</h3>
+  <p>An assessment scores six pairwise separations σ ∈ [0,1] between the four forces
+  (protect, project, reflect, connect). The 4×4 matrix Σ has unit diagonal and carries the
+  <strong>residual correlation</strong> off-diagonal:</p>
+  <div class="formula">Σ<sub>ij</sub> = 1 − σ<sub>ij</sub> (i ≠ j) · Σ<sub>ii</sub> = 1</div>
+  <p>Full separation everywhere (σ = 1) gives the identity matrix — det(Σ) = 1, the full
+  tetrahedron. No separation (σ = 0) gives the all-ones matrix — det(Σ) = 0, total collapse.
+  det(Σ) is the <strong>sovereignty volume</strong>, and gating is multiplicative: one
+  collapsed pair takes total value to zero. Positive semi-definiteness is checked over all
+  principal minors (Sylvester's criterion alone certifies only the definite case).</p>
+
+  <div class="formula">det ≤ 0 → hold · 0 &lt; det &lt; θ<sub>fly</sub> → sandbox · det ≥ θ<sub>fly</sub> → fly</div>
+
+  <h3>The 64-vertex lattice, and tier</h3>
+  <p>Each separation, thresholded, sets one bit of a 6-bit word (weights 32/16/8/4/2/1 =
+  Protection/Delegation/Memory/Connection/Computation/Value). The word is a vertex of the
+  Boolean lattice {0,1}⁶ — 64 positions in seven strata by popcount (1·6·15·20·15·6·1) —
+  and <strong>tier IS the stratum</strong>: rank is located, not assigned.</p>
+
+  <h3>Relationship value and integrity</h3>
+  <div class="formula">A(τ) = α · ln(1 + |τ|) · h(τ)</div>
+  <p>|τ| is the count of audited interactions; h(τ) is the <strong>integrity fraction</strong> —
+  the share of the history whose hash chain verifies. Unverified history contributes nothing:
+  h(τ) multiplies, so a broken chain voids accumulated standing. The audit ledger is
+  content-addressed (canonical bytes: recursive sorted keys, no whitespace, sha256), chained
+  from a zero genesis, and re-derivable by any auditor in any language.</p>
+
+  <h3>The witness draw (anti-grooming)</h3>
+  <div class="formula">index<sub>i</sub> = sha256(canonHash ‖ uint32BE(i)) mod remaining</div>
+  <p>Deep-verification probes are sampled without replacement, seeded by the sha256 of the
+  agent's own canonicalised submission. The draw is deterministic to an auditor and
+  unpredictable to the agent at writing time — the assessed party cannot rehearse its own
+  audit.</p>
+
+  <h3>The reconstruction ceiling (Act II — in build)</h3>
+  <div class="formula">R &lt; 1</div>
+  <p>The pooling claim: attestation bundles are minimised by construction — counts become
+  thresholds, timestamps become windows, enumerations become cardinalities — so that no
+  coalition of pooled bundles reconstructs any single institution's underlying data. The
+  formal statement and its demonstration land with the two-authority pooling build; its
+  status is tracked openly in <a href="evidence.html">Evidence</a>.</p>
+</main>
+<footer>Gatehouse KY-A · one engine, many expressions · every submission is the operator's act alone</footer>
+</body>
+</html>

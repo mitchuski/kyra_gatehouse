@@ -1,0 +1,28 @@
+# Chronicles — the session record
+
+One file per working session: decisions of record, discoveries, and exact
+pickup state. Newest last.
+
+| Session | Chronicle | What happened |
+|---|---|---|
+| 1 | [2026-07-17 · contracts freeze](2026-07-17_session-1-contracts-freeze.md) | WP0 + scaffold + WP7 skeleton; contracts-v1 frozen (root `0c5df807…`); FD-1 table; PVM-native probe decision; hearthold late-bound; TSP+Lexon via the harness |
+| 2 | [2026-07-17 · auto runtimes](2026-07-17_session-2-auto-runtimes.md) | `runtimes/` lane: 7 zero-dep Mage⊥Swordsman auditors, 85 checks, wired into `pnpm verify`; σ_mr deep-gap finding signed |
+| 3 | [2026-07-17 · the engine](2026-07-17_session-3-engine-wp1-4.md) | WP1–4 bodies live, zero xfails; **the Σ inversion found + fixed (entry = 1−σ)**; eight decisions of record; demo-loop API; app-flow blueprint |
+| 4 | [2026-07-17 · review + apps](2026-07-17_session-4-review-and-apps.md) | The plain-words review (part one); WP5 dashboard + WP6 keyhole built; browser-side tamper demo; Act-3 RWA pitch narrative |
+| 5 | [2026-07-18 · 8004 lane](2026-07-18_session-5-8004-registry-lane.md) | ERC-8004 chain-registry adapter seated (opt-in; anchor = evidence, never authority; pool predicate composes pool-side) |
+| 6 | [2026-07-18 · docs suite](2026-07-18_session-6-docs-suite.md) | This suite: README front door, architecture page, demo runbook, hack-readiness map, indices |
+| 7 | [2026-07-18 · site at :1337](2026-07-18_session-7-local-site-1337.md) | WP9 site built local-only (five pages incl. tiered Evidence table, `pnpm site` → :1337); **git ruling: no history until hack acceptance** |
+| 8 | [2026-07-18 · demo excellence](2026-07-18_session-8-demo-excellence.md) | Items 1–6: autonomous agent (keyhole endpoint enforces the wall), seeded MIRAGE (talks well, sandboxed by volume), **Act II two-authority pooling BUILT**, real ed25519 signatures + did:key, queue-as-theme, animations (dealing draw, sinking tetrahedron) |
+| 9 | [2026-07-18 · hosted at :1337](2026-07-18_session-9-hosted-at-1337.md) | **`pnpm host` = the whole Gatehouse at one origin**: site at `/`, dashboard at `/supervisor/`, autonomous agent at `/agent/`, engine proxied + auto-started; local-only per the ruling; RUNNING |
+| 10 | [2026-07-18 · landing page](2026-07-18_session-10-landing-page.md) | The dark front door: hero + CTAs, live-engine status chips, the three-tetrahedra strip, the AURORA/MIRAGE pair (naming = real light / false light, on the record), proof strip; inner pages keep the light register; addendum: messaging pass + the KY-A="Kyra" recognition |
+| 11 | [2026-07-18 · Kyra Gate + workflow](2026-07-18_session-11-kyra-gate-workflow.md) | **"Kyra Gate" ruled as product name** (lockup with Gatehouse KY-A, propagated everywhere); dashboard v4: named stations, station rail + "next action" guide, self-ticking 10-step walkthrough, the volume as the third light on the gates panel, guided seams |
+| 12 | [2026-07-18 · the FedWiki guide](2026-07-18_session-12-fedwiki-guide.md) | New **Guide** tab: 15 wiki-small pages in a true lineup (links open to the right), federation idiom with no wiki server — sits in the interface at :1337; page-shaped for a real FedWiki expression later if ruled |
+| 13 | [2026-07-18 · auto-runs wave 2](2026-07-18_session-13-auto-runs-2.md) | Runtime 08 (pooling census from source, R<1 recomputed) + runtime 09 (site-coherence: nav/guide/brand + **check-counts recompute from the suites** — drift fails verify; caught 157→184 during its own build) + **e2e ceremony auto-run** (own engine on :8100, 11 beats). One command, 195 assertions |
+| 14 | [2026-07-18 · ToIP trust-tasks lane](2026-07-18_session-14-toip-trust-tasks-lane.md) | Map → defaults ruling → **BUILT**: schemas vendored w/ provenance digests, zero-dep envelope+bridge in the adapters lane (key parity + byte-exact canon parity vs the engine), ceremony re-spoken as `agent-admission/*` envelopes incl. the agent's real counter-signature + a signed relying-party `status` read; runtime 10 (16 checks, W-1 float quarantine) + e2e beats 12–14; leak fence extended; **200 checks + 14 beats all green** |
+| 15 | — | Collaborator brief written + sent (`docs/BRIEF_kyra-gate_collaborators_2026-07-18.md`), verified against a fresh 214-assertion all-green run |
+| 16 | [2026-07-18 · second implementation](2026-07-18_session-16-second-implementation.md) | **Implementation #2 built** (`interop/impl2/impl2.py` — Python, zero shared code, own risk-rubric policy) **× three expressions** (risk-mastery · archon-hearthold · hitchhikers; persona data only, named in the registry); **interop proven BOTH directions** on every verify (impl2 verifies impl1 10/10 incl. cross-language ed25519 + genesis re-verify; impl1 accepts all three expression transcripts); W-1 no-floats enforced in `mint_envelope`; addenda: guide completed to 19 pages + the wiki-link renderer rebuilt collision-proof |
+| 17 | [2026-07-18 · VERA + Kyra lore](2026-07-18_session-17-vera-and-kyra-lore.md) | **AURORA → VERA** (Latin: the true one; MIRAGE stays; new did:key seed, propagated code→apps→site→guide→docs, verify green) + **the real Kyra lore woven in** (Tier 0, "the compass, not the captain", her vision quote as the landing epigraph, intel.agentprivacy.ai linked as her publication) |
+
+Review gate 1 (Mitch) carries three items: FD-1 confirmation · σ_mr
+disposition · ratify Σ=1−σ + VALIDATED-only issuance — then the first local
+commit + tag `contracts-v1`.

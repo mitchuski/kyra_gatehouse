@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gatehouse.agentprivacy.ai/schema/assessment-result.schema.json",
+  "title": "AssessmentResult",
+  "description": "PVM-native assessment: probe scores -> force scores -> Sigma -> det(Sigma) -> 6 sovereignty bits -> stratum -> tier. Cross-field invariants (recomputability) are enforced in harness.validate_assessment(), mirrored by golden test vectors.",
+  "type": "object",
+  "properties": {
+    "assessmentId": { "type": "string", "minLength": 1 },
+    "agent": { "$ref": "defs.schema.json#/$defs/Did" },
+    "supervisor": { "$ref": "defs.schema.json#/$defs/Did" },
+    "timestamp": { "$ref": "defs.schema.json#/$defs/Timestamp" },
+    "probeResults": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "probeId": { "type": "string", "minLength": 1 },
+          "score": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+          "rationale": { "type": "string", "minLength": 1 },
+          "method": { "$ref": "defs.schema.json#/$defs/EvidenceKind" }
+        },
+        "required": ["probeId", "score", "rationale", "method"],
+        "additionalProperties": false
+      }
+    },
+    "witnessDraw": { "$ref": "defs.schema.json#/$defs/WitnessDraw" },
+    "forceScores": {
+      "type": "object",
+      "properties": {
+        "protect": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "project": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "reflect": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "connect": { "$ref": "defs.schema.json#/$defs/UnitInterval" }
+      },
+      "required": ["protect", "project", "reflect", "connect"],
+      "additionalProperties": false
+    },
+    "sigma": {
+      "type": "object",
+      "description": "The 6 off-diagonal entries of the symmetric 4x4 Sigma; the diagonal is identically 1.",
+      "properties": {
+        "sm": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "sr": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "sc": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "mr": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "mc": { "$ref": "defs.schema.json#/$defs/UnitInterval" },
+        "rc": { "$ref": "defs.schema.json#/$defs/UnitInterval" }
+      },
+      "required": ["sm", "sr", "sc", "mr", "mc", "rc"],
+      "additionalProperties": false
+    },
+    "detSigma": {
+      "type": "number",
+      "description": "det(Sigma), the sovereignty tetrahedron volume. det <= 0 gates deployment to hold."
+    },
+    "psd": {
+      "type": "boolean",
+      "description": "Whether Sigma is positive semi-definite (triangle inequality in information space)."
+    },
+    "sovereignty": {
+      "type": "object",
+      "properties": {
+        "vertex": { "$ref": "defs.schema.json#/$defs/Vertex" },
+        "bits": { "$ref": "defs.schema.json#/$defs/Bits6" },
+        "bitOrder": {
+          "const": ["Protection", "Delegation", "Memory", "Connection", "Computation", "Value"],
+          "description": "Canonical lattice dimension order, MSB->LSB weights 32/16/8/4/2/1. Self-describing; must match lattice_coherence_audit.py."
+        }
+      },
+      "required": ["vertex", "bits", "bitOrder"],
+      "additionalProperties": false
+    },
+    "stratum": { "$ref": "defs.schema.json#/$defs/Stratum" },
+    "tier": {
+      "$ref": "defs.schema.json#/$defs/Stratum",
+      "description": "tier == stratum by definition. Display names are render-layer only; the engine is register-neutral."
+    }
+  },
+  "required": [
+    "assessmentId", "agent", "supervisor", "timestamp", "probeResults",
+    "witnessDraw", "forceScores", "sigma", "detSigma", "psd",
+    "sovereignty", "stratum", "tier"
+  ],
+  "additionalProperties": false
+}
