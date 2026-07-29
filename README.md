@@ -33,7 +33,8 @@ The engine is a rendering of the 0xagentprivacy Privacy Value Model —
   ([LF Decentralized Trust](https://www.lfdecentralizedtrust.org/))
 - **Chloe White** — risk, regulatory & policy ·
   [Risk Mastery](https://riskmastery.xyz/) ·
-  [chloewhite.info](https://chloewhite.info/index.html)
+  [chloewhite.info](https://chloewhite.info/index.html) · member,
+  [BGIN](https://bgin-global.org/)
 
 The collaboration is a braid: the City of Mages / 0xagentprivacy research
 programme × the [Hearthold](https://github.com/Flaxscrip/hearthold)
