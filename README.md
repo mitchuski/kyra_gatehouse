@@ -33,7 +33,8 @@ The engine is a rendering of the 0xagentprivacy Privacy Value Model —
   ([LF Decentralized Trust](https://www.lfdecentralizedtrust.org/))
 - **Chloe White** — risk, regulatory & policy ·
   [Risk Mastery](https://riskmastery.xyz/) ·
-  [chloewhite.info](https://chloewhite.info/index.html) · member,
+  [chloewhite.info](https://chloewhite.info/index.html) · co-chair,
+  Financial Applications and Social Economics (FASE) WG,
   [BGIN](https://bgin-global.org/)
 
 The collaboration is a braid: the City of Mages / 0xagentprivacy research
