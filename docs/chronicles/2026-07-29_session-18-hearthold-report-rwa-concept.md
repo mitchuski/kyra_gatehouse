@@ -272,6 +272,22 @@ commits. The catalog transcription stays untracked pending Christian's
 OK. Remaining acts: Christian's branch review/merge, his call on the
 catalog, and the submission itself by 31 July.
 
+**Evening codas:** (1) **KYRA — Know Your Runtime Agent** — Mitch
+dropped the exact backronym the morning's cut had been missing; *runtime*
+names the thesis (verify what an agent understands and does as it runs,
+not what it possesses) and honours the `runtimes/` auditor lane;
+propagated to note §1, README, landing footer, guide. (2) **David
+McFadzean joins the team lines as Archon architect** (Christian's ask,
+relayed) — the identity platform beneath Hearthold, available to sign
+releases. (3) Christian's identification, folded into the hitchhiker
+passage: **the hitchhiker's pattern is the reverse-Google pattern in
+motion** — the query travels to the nodes, the data never to a centre —
+and Hearthold's **trust-chain attenuation** lets any hearth-keeper
+refuse a hitchhiker too far from home (four degrees of separation), so
+hospitality is a policy each node sets. The roads have tolls, signs,
+and neighbourly limits. Runtimes re-run green; outputs rebuilt and
+canonical.
+
 ## Pickup state
 
 Christian's branch awaits review; his corrected persona file awaits our

@@ -11,7 +11,9 @@ assessment's sovereignty volume det(Σ) decides fly / sandbox / hold.
 
 The gate is named for **Kyra** — the persona of balanced, sovereign AI:
 the mage in whom protection and projection stand in equilibrium; *the
-compass, not the captain*. KY-A — Know Your Agent — keeps her name.
+compass, not the captain*. And the name is exact: **KYRA — Know Your
+Runtime Agent**. *Runtime* is the point — the gate verifies what an
+agent understands and does as it runs, not what it possesses.
 
 One engine, many expressions: submissions, ecosystems, and deadlines are
 named **only** in [`render/expressions.yaml`](render/expressions.yaml).
@@ -31,6 +33,8 @@ The engine is a rendering of the 0xagentprivacy Privacy Value Model —
   identity, custody, the hearth · [DIF](https://identity.foundation/)
   member, Trusted Agents WG · Trust over IP
   ([LF Decentralized Trust](https://www.lfdecentralizedtrust.org/))
+- **David McFadzean** — **Archon architect** — the identity platform
+  beneath Hearthold
 - **Chloe White** — risk, regulatory & policy ·
   [Risk Mastery](https://riskmastery.xyz/) ·
   [chloewhite.info](https://chloewhite.info/index.html) · co-chair,
