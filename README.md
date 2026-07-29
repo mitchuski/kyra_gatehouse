@@ -61,6 +61,46 @@ The CDIR Track 4 concept note lives at
 | WP9 site + apps hosted at one origin | ✅ `pnpm host` → localhost:1337 (deploy = Mitchell's act) |
 | **Total: one command, 214 automated assertions in independent lanes** | ✅ `pnpm verify` |
 
+## What we're building next
+
+The running system is deliberately a **floor, not a finished product**.
+Over the hackathon month — in collaboration with other participants, and
+this is an open invitation — the build plan:
+
+- **The identity round with Hearthold.** Real key custody
+  (wallet-per-agent), `did:cid` resolution integrity, custody under
+  delegation. Enters through the late-bound `AgentIdentityProvider`
+  adapter lane; the engine core stays untouched — the gate still
+  decides, only whose key stands behind the agent's half of the
+  credential changes.
+- **Signed-at-issuance minimisation proofs.** Every minimised Act II
+  claim ("≥10 incidents", a quarter not a timestamp) backed by the
+  issuer's signature at assembly time, rather than trusted as arithmetic
+  done later.
+- **MyTerms (IEEE P7012) as the first governed agreement.** Terms
+  proffered by the *individual*, compressed to Lexon clauses (the same
+  controlled natural language the engine already prints from live
+  config), gated on the RPP proof-of-understanding — "the agent read
+  the terms" as an auditable event — and legally anchored via Archon
+  governance where relevant. The agreement that seats an agent as a
+  node in a privacy-preserving trust graph.
+- **The RWA credit scenario.** The two acts re-cast as fintech:
+  underwriting admission at the gate, assessors and regulators as the
+  relying authorities, revocation re-pricing the position — *the gate
+  creates the premium*. Sharpened against sponsor use cases.
+- **The hearth.** The local-first hardware horizon: the gate embedded in
+  a household node with its own knowledge graph, peered over DIDComm/TOR
+  or a private tailnet mesh. Concept only today — see Figure 2 of the
+  concept note.
+- **A third interoperable implementation.** The ToIP Trust Task
+  promotion bar is two independent implementations; this repo already
+  carries two, proven against each other on every verify. We want three
+  — the interop harness a third would be tested against already runs.
+
+Milestones are data in [`render/expressions.yaml`](render/expressions.yaml):
+CDIR concept note (31 Jul) → five-minute demo video + public site
+(8 Sep) → Block 15 IKP case study (Oct).
+
 ## Quickstart
 
 ```
