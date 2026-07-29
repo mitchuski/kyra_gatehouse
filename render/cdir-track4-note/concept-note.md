@@ -10,7 +10,7 @@ date: 29 July 2026
 
 | | |
 |---|---|
-| **Mitchell (soulbis)** | mitchell@soulbis.com — engine, model, standards lane · [**DIF**](https://identity.foundation/) member, Trusted Agents WG · **chair, [ZKP Task Force](https://github.com/trustoverip/dtgwg-zkp-tf), Trust Graph WG, Trust over IP** ([LF Decentralized Trust](https://www.lfdecentralizedtrust.org/)) · **co-chair, Identity, Key Management & Privacy (IKP) WG, [BGIN](https://bgin-global.org/)** |
+| **Mitchell (soulbis)** | mitchell@soulbis.com — engine, model, standards lane · member, Trusted Agents WG, [**DIF**](https://identity.foundation/) · **co-chair, [ZKP Task Force](https://github.com/trustoverip/dtgwg-zkp-tf), Trust Graph WG, Trust over IP** ([LF Decentralized Trust](https://www.lfdecentralizedtrust.org/)) · **co-chair, Identity, Key Management & Privacy (IKP) WG, [BGIN](https://bgin-global.org/)** |
 | **Christian Saucier** | Hearthold / GenitriX (Archon ecosystem) — identity, custody, the hearth · [**DIF**](https://identity.foundation/) member, Trusted Agents WG · **Trust over IP** ([LF Decentralized Trust](https://www.lfdecentralizedtrust.org/)) |
 | **Chloe White** | risk, regulatory & policy expert · [Risk Mastery](https://riskmastery.xyz/) · [chloewhite.info](https://chloewhite.info/index.html) |
 | **Collaboration** | 0xagentprivacy / the City of Mages research programme × the Hearthold project (Archon ecosystem) · research carried through **BGIN** (Blockchain Governance Initiative Network) |

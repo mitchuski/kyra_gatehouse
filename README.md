@@ -20,8 +20,8 @@ The engine is a rendering of the 0xagentprivacy Privacy Value Model —
 
 ## Team & collaboration
 
-- **Mitchell (soulbis)** — engine, model, standards lane ·
-  [DIF](https://identity.foundation/) member, Trusted Agents WG · chair,
+- **Mitchell (soulbis)** — engine, model, standards lane · member,
+  Trusted Agents WG, [DIF](https://identity.foundation/) · co-chair,
   [ZKP Task Force](https://github.com/trustoverip/dtgwg-zkp-tf), Trust
   Graph WG, Trust over IP
   ([LF Decentralized Trust](https://www.lfdecentralizedtrust.org/)) ·
