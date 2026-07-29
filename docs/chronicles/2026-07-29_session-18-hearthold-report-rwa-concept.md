@@ -260,8 +260,17 @@ ZKP Task Force chair links the actual repo
 bgin-global.org; Chloe's line links **Risk Mastery** (riskmastery.xyz)
 and chloewhite.info. All six URLs verified as live link annotations in
 the built PDF. `out/` closes the day as exactly the submission pair
-(8pp PDF + docx, every ruling carried) plus the schematic. Mitchell's
-act remains: the submission itself, by 31 July.
+(8pp PDF + docx, every ruling carried) plus the schematic.
+
+**Pushed (Mitch's act, same day):** four thematic commits,
+`2807ac6..5c6b30a`, to the public repo — site naming pass · concept
+note v2 with built outputs + registry · chronicle 18 + index · README
+presentation (Kyra Gate lockup, team with linked affiliations, Act
+II/bridge/impl2 rows, the 214-assertion total, `pnpm host`, submission
+fast-path). Full `pnpm verify` ran green immediately before the
+commits. The catalog transcription stays untracked pending Christian's
+OK. Remaining acts: Christian's branch review/merge, his call on the
+catalog, and the submission itself by 31 July.
 
 ## Pickup state
 
